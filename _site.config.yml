@@ -1,0 +1,156 @@
+favicon: /favicon.ico
+
+banner:
+  enable: true
+  title: 
+    - 猫
+    - 九
+    - 大
+    - 大
+    - の
+    - Blog
+  src: /js/ui/banner.js
+  border: true
+  cloud:
+    enable: true
+    color: "white"
+  go_down:
+    enable: true
+    icon: icon-arrow-down-s-line
+
+mode: auto
+
+bg_image:
+  enable: true
+  url: https://blog.res.jianchengwang.info/blog-bg.jpg
+  # dark:
+  # blur: 30px # 设置背景模糊程度
+  opacity: 0.2
+
+avatar:
+  enable: true
+  url: https://blog.res.jianchengwang.info/avatar.jpg
+  rounded: true
+  opacity: 1
+  mickey_mouse: false
+  status:
+    enable: true
+    message: balabala....
+
+menu:
+  home:
+    path: /
+    icon: icon-home-4-line
+  list:
+    - type: archives
+      path: /archives/
+      icon: icon-archive-line
+    - type: categories
+      path: /categories/
+      icon: icon-folder-2-line
+    - type: tags
+      path: /tags/
+      icon: icon-price-tag-3-line
+  custom:
+    title: Albums
+    path: /albums
+    icon: icon-gallery-line
+
+social:
+  - name: GitHub
+    link: https://github.com/jianchengwang
+    icon: icon-github-line
+    color: "#181717"
+  - name: E-Mail
+    link: mailto:jianchengwang80@gmail.com
+    icon: icon-mail-line
+    color: "#8E71C1"
+  - name: Weibo
+    link: https://weibo.com/wjc750145113
+    icon: icon-weibo-line
+    color: "#E6162D"
+  - name: Files
+    link: https://files.jianchengwang.info/
+    icon: icon-folder-line
+    color: blue
+  - name: Travelling
+    link: https://travellings.now.sh/
+    icon: icon-send-plane-2-line
+    color: orange
+
+reward:
+  enable: true
+  icon: icon-hand-coin-line
+  comment: Buye me a cup of coffee or ice coke.
+  methods:
+    - name: Alipay
+      path: https://blog.res.jianchengwang.info/alipay.PNG
+      color: "#00A3EE"
+      icon: icon-alipay-line
+    - name: WechatPay
+      path: https://blog.res.jianchengwang.info/wxpay.PNG
+      color: "#2DC100"
+      icon: icon-wechat-pay-line
+
+albums:
+  enable: true
+
+girls:
+  enable: true
+
+pages:
+  - name: Friend Links
+    url: /links/
+    icon: icon-genderless-line
+    color: dodgerblue
+  - name: Lovely Girls
+    url: /girls/
+    icon: icon-women-line
+    color: hotpink
+
+
+post_edit:
+  enable: true
+  url: https://github.com/jianchengwang/jianchengwang.github.io/tree/hexo/source/
+
+widget_tree:
+  cdn: true
+  hide: false
+  layout: default
+  
+# search
+# https://github.com/wzpan/hexo-generator-search
+local_search:
+  enable: true
+  src: /js/search/local-search.js
+  
+search:
+  modal: true
+  bg_image: https://blog.res.jianchengwang.info/albums/wallpaper/1.jpg
+  dark: https://blog.res.jianchengwang.info/albums/wallpaper/2.jpg
+
+codeblock:
+  copy_btn: true
+  prismjs:
+    light: default
+    dark: tomorrow
+    
+github_issues:
+  enable: true
+  username: jianchenwang
+  repository: jianchengwang.github.io
+  filters: is:issue
+
+footer:
+  since: 2020
+  beian:
+    enable: true
+    icp: 闽ICP备16000680号
+  custom_text: <a style="display:inline-block" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://blog.res.jianchengwang.info/upyun-logo.png" alt="upyun"/></a>
+
+
+head:
+  js:
+    base: 
+      live2dv3.init: https://cdn.jsdelivr.net/gh/jianchengwang/live2d_models@main/assets/js/live2dv3.init.js
+
