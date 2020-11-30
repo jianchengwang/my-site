@@ -4,10 +4,20 @@
       <img width="96" loading="lazy" src="https://blog.res.jianchengwang.info/avatar.jpg" alt="jiancheng_wang"><span class="site-author-status" title="balabala....">😊</span>
     </a>
     <div class="sayWord">Have fun and enjoy every day.</div>
+    <div>
+      <Reward />
+    </div>
   </div>
 </template>
 
 <script>
+import Reward from "@/components/plugin/Reward.vue";
+
+export default {
+  components: {
+    Reward,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

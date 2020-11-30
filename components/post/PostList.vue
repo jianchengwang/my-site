@@ -1,6 +1,7 @@
 <template>
-  <div class="container flex-1">
+  <div class="main post-list flex-1">
     <h1 class="list-title">{{ listTitle }}</h1>
+    <input class="list-search" type="text" placeholder="Search..." v-model="searchKey" />
     <div v-if="docsYear.length">
       <div class="list-group" v-for="dy in docsYear" :key="dy.year">
         <h2 class="list-year">{{ dy.year }}</h2>
@@ -23,23 +24,31 @@
 <script>
 export default {
   props: ["docs", "listTitle"],
+  data() {
+    return {
+      searchKey: "",
+    };
+  },
   computed: {
     docsYear: function () {
       let result = [];
-      if (this.docs.length) {
-        let yearTmp = this.utils.formatDate(this.docs[0].createdAt, "YY");
-        let item = this.docs[0];
+      let filterDocs = this.docs.filter((doc) =>
+        doc.title.toLowerCase().includes(this.searchKey.toLowerCase())
+      );
+      if (filterDocs.length) {
+        let yearTmp = this.utils.formatDate(filterDocs[0].createdAt, "YY");
+        let item = filterDocs[0];
         item.createdAt = this.utils.formatDate(item.createdAt);
-        result.push({ year: yearTmp, docs: [this.docs[0]] });
-        for (let i = 1; i < this.docs.length; i++) {
-          item = this.docs[i];
+        result.push({ year: yearTmp, docs: [filterDocs[0]] });
+        for (let i = 1; i < filterDocs.length; i++) {
+          item = filterDocs[i];
           item.createdAt = this.utils.formatDate(item.createdAt);
-          let itemYear = this.utils.formatDate(this.docs[i].createdAt, "YY");
+          let itemYear = this.utils.formatDate(filterDocs[i].createdAt, "YY");
           if (itemYear != yearTmp) {
             yearTmp = itemYear;
-            result.push({ year: yearTmp, docs: [this.docs[i]] });
+            result.push({ year: yearTmp, docs: [filterDocs[i]] });
           } else {
-            result[result.length - 1].docs.push(this.docs[i]);
+            result[result.length - 1].docs.push(filterDocs[i]);
           }
         }
       }
@@ -50,26 +59,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-  }
-  li {
-    list-style: none;
-    padding: 0;
-    a {
-      text-decoration: none;
-      :hover {
-        color: gainsboro;
-      }
-    }
-  }
+.post-list {
+  width: 80%;
 }
 .list-group {
   padding-bottom: 0.5rem;
@@ -78,15 +69,18 @@ export default {
   text-align: center;
   font-size: 2rem;
 }
+.list-search {
+  padding: 0.2rem;
+}
 .list-year {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   font-size: 1.8rem;
+  font-weight: bold;
 }
 .list-item {
-  line-height: 2.2rem;
-  width: 45rem;
+  line-height: 2rem;
   position: relative;
   transition: border 0.5s;
   border-bottom: 1px dashed darkgray;
@@ -104,7 +98,6 @@ export default {
   right: 0rem;
   margin: 0 0.618em 0 2em;
   line-height: 2rem;
-  color: gainsboro;
   flex: 1;
 }
 </style>

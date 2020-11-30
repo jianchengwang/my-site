@@ -13,9 +13,6 @@
       <nuxt-link :class="navClass('/store')" to="/store">
         STORE
       </nuxt-link>
-      <nuxt-link :class="navClass('/book')" to="/book">
-        BOOK
-      </nuxt-link>
       <nuxt-link :class="navClass('/project')" to="/project">
         PROJECT
       </nuxt-link>
@@ -27,6 +24,9 @@
       </nuxt-link>
       <nuxt-link :class="navClass('/albums')" to="/albums">
         Albums
+      </nuxt-link>
+      <nuxt-link :class="navClass('/book')" to="/books">
+        BOOKS
       </nuxt-link>
     </nav>
   </div>
@@ -46,6 +46,7 @@ export default {
       const isAbout = this.currentPath.startsWith("/about");
       const isGirls = this.currentPath.startsWith("/girls");
       const isAlbums = this.currentPath.startsWith("/albums");
+      const isBooks = this.currentPath.startsWith("/books");
 
       return `uppercase no-underline mx-3 ${
         this.currentPath === name ||
@@ -54,7 +55,8 @@ export default {
         (isStore && name === "/store") ||
         (isAbout && name === "/about") ||
         (isGirls && name === "/girls") ||
-        (isAlbums && name === "/albums")
+        (isAlbums && name === "/albums") ||
+        (isBooks && name === "/books")
           ? "text-black font-semibold"
           : "text-gray-700"
       }`;

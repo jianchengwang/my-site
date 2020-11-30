@@ -1,5 +1,5 @@
 <template>
-  <div class="post-body prose prose-sm sm:prose lg:prose-lg xl:prose-xl 2xl:prose-2xl mx-auto">
+  <div class="post-body">
     <hr />
     <nuxt-content :document="doc" />
     <hr />

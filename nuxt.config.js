@@ -12,14 +12,21 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    script: [
+      {
+        src:
+          "https://cdn.jsdelivr.net/gh/jianchengwang/live2d_models@main/assets/js/live2dv3.init.js",
+        mode: "client",
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~assets/main.scss'],
+  css: ['~assets/main.scss', '~static/css/typo.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/common.js', { src: '~/plugins/lightgallery.client.js', mode: 'client' }],
+  plugins: ['~/plugins/common.js'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -33,16 +40,11 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content'
   ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {

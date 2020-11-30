@@ -1,5 +1,5 @@
 <template>
-  <div class="albums-group flex-1">
+  <div class="main flex-1">
     <h1 class="list-title">Albums</h1>
     <div class="page-subtitle">{{ albums.length }} albums in total</div>
     <div class="album-list">
@@ -27,9 +27,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.albums-group {
-  text-align: center;
-}
 .album-list {
   display: flex;
   justify-content: center;
@@ -78,10 +75,5 @@ export default {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     transform: rotate(-3deg);
   }
-}
-a {
-  color: #0078e7;
-  text-decoration: none;
-  transition: color 0.1s;
 }
 </style>

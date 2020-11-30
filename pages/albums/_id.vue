@@ -4,8 +4,8 @@
     <div id="gallery">
       <div class="page-subtitle">{{ photos.length }} photos in total</div>
       <client-only>
-        <div class="photo-list" id="lightgallery" ref="lightgallery" lg-uid="lg0">
-          <figure v-for="photo in photos" :key="photo.caption" class="photo-list-item" :data-src="photo.src" data-sub-html="<h4>1</h4><p>undefined</p>">
+        <div class="photo-list" id="lightgallery" ref="lightgallery">
+          <figure v-for="photo in photos" :key="photo.caption" class="photo-list-item" :data-src="photo.src">
             <img class="photo-list-cover" :src="photo.src" loading="lazy" alt="1">
             <figcaption>{{ photo.id }}</figcaption>
           </figure>
@@ -20,7 +20,7 @@ export default {
     setTimeout(() => {
       let el = document.getElementById("lightgallery");
       window.lightGallery(el);
-    }, 500);
+    }, 1000);
   },
   async asyncData({ $content, params, error }) {
     const albumId = params.id;
@@ -33,6 +33,22 @@ export default {
       title: page.title,
       photos: page.photos,
     };
+  },
+  head: {
+    script: [
+      {
+        src:
+          "https://cdn.jsdelivr.net/npm/lightgallery.js@latest/dist/js/lightgallery.min.js",
+        mode: "client",
+      },
+    ],
+    link: [
+      {
+        rel: "stylesheet",
+        href:
+          "https://cdn.jsdelivr.net/npm/lightgallery.js@latest/dist/css/lightgallery.min.css",
+      },
+    ],
   },
 };
 </script>

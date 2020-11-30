@@ -26,7 +26,6 @@ export default {
     let postPath = params.post;
     let postId = params.id;
 
-    console.info(postPath);
     if (postPath === "tag") {
       if (postId) {
         const tag = postId;

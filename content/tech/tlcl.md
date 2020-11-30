@@ -13,7 +13,7 @@ tags:
 
 [翻译版](http://billie66.github.io/TLCL/book/)
 
-<!-- more -->
+<!--more-->
 
 ### I/O redirection
 

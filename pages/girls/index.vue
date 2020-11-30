@@ -1,5 +1,5 @@
 <template>
-  <div class="girls-group flex-1">
+  <div class="main flex-1">
     <h1 class="list-title">{{ title }}</h1>
     <div id="girls">
       <div class="girls-number">{{ girls.length }}</div>
@@ -36,15 +36,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.girls-group {
-  text-align: center;
-  padding-bottom: 0.5rem;
-}
 .girls-number {
   color: darkgray;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 .girl-banner {
+  color: darkgray;
+  font-size: 1.1rem;
   padding-bottom: 0.5rem;
 }
 .girl-items {
@@ -95,14 +93,5 @@ export default {
     font-weight: bold;
     color: darkgray;
   }
-}
-a {
-  color: #0078e7;
-  text-decoration: none;
-  transition: color 0.1s;
-}
-
-figcaption {
-  display: block;
 }
 </style>

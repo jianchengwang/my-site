@@ -11,7 +11,7 @@ tags:
 
 [官网地址](https://manjaro.org/)
 
-<!-- more -->
+<!--more-->
 
 ### set mirrors
 

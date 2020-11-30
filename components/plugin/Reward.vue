@@ -1,21 +1,16 @@
 <template>
   <div id="reward-container">
-    <span class="hty-icon-button button-glow" id="reward-button" title="Donate"
-      onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;">
+    <div class="hty-icon-button button-glow" id="reward-button" title="Donate" @click="toggleShowQr">
       <span class=".icon">Click</span>
-    </span>
+    </div>
     <div id="reward-comment">Buye me a cup of coffee or ice coke.</div>
-    <div id="qr" style="display:none;">
-      <div style="display:inline-block"><a target="_blank" rel="noopener"
-          href="https://blog.res.jianchengwang.info/alipay.PNG"><img loading="lazy"
-            src="https://blog.res.jianchengwang.info/alipay.PNG" alt="Alipay" title="Alipay"></a>
+    <div id="qr" v-show="showQr">
+      <div style="display:inline-block"><a target="_blank" rel="noopener" href="https://blog.res.jianchengwang.info/alipay.PNG"><img loading="lazy" src="https://blog.res.jianchengwang.info/alipay.PNG" alt="Alipay" title="Alipay"></a>
         <div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-alipay-line"></use>
             </svg></span></div>
       </div>
-      <div style="display:inline-block"><a target="_blank" rel="noopener"
-          href="https://blog.res.jianchengwang.info/wxpay.PNG"><img loading="lazy"
-            src="https://blog.res.jianchengwang.info/wxpay.PNG" alt="WechatPay" title="WechatPay"></a>
+      <div style="display:inline-block"><a target="_blank" rel="noopener" href="https://blog.res.jianchengwang.info/wxpay.PNG"><img loading="lazy" src="https://blog.res.jianchengwang.info/wxpay.PNG" alt="WechatPay" title="WechatPay"></a>
         <div><span style="color:#2DC100"><svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-wechat-pay-line"></use>
             </svg></span></div>
@@ -25,7 +20,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      showQr: false,
+    };
+  },
+  methods: {
+    toggleShowQr: function () {
+      this.showQr = !this.showQr;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -36,14 +42,19 @@ export default {};
   text-align: center;
 }
 #reward-button {
+  font-weight: bold;
   display: inline-block;
   text-align: center;
   padding: 0.5rem;
-  color: #ff8718;
+  color: #1abc9c;
   border-radius: 100%;
   width: 1.5rem;
   height: 1.5rem;
   text-align: center;
+  :hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 .button-glow {
   animation-duration: 2s;
@@ -60,6 +71,11 @@ export default {};
 
 #reward-comment {
   margin-top: 0.5rem;
+}
+
+#qr {
+  margin: 0 auto;
+  width: 40rem;
 }
 
 #qr img {
