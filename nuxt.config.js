@@ -108,8 +108,8 @@ export default {
     //   '/tech/web-design-in-4-minutes',
     // ]
     routes() {
-      const deployUtils = require('~deploy/utils.js')
-      return deployUtils.genRoutes('~content').map(path => {
+      const deployUtils = require('./deploy/utils.js')
+      return deployUtils.genRoutes('./content').map(path => {
         return {
           route: path,
         }
