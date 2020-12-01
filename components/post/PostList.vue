@@ -9,7 +9,7 @@
           <li class="list-item" v-for="doc in dy.docs" :key="doc.title"><a :href="doc.path">
               <div class="list-item-title">
                 <span>
-                  {{ doc.title }} {{ doc.path }}
+                  {{ doc.title }}
                   <span :datetime="doc.createdAt" class="list-item-time">{{ doc.createdAt }}</span>
                 </span>
                 <span :datetime="doc.createdAt" class="list-item-time">{{ doc.createdAt }}</span>
@@ -50,8 +50,12 @@ export default {
           } else {
             result[result.length - 1].docs.push(filterDocs[i]);
           }
-          console.info(filterDocs[i].path);
-          console.info(this.postPath + "/" + filterDocs[i].title);
+
+          // yarn generate path will be undefined
+          if (!filterDocs[i].path) {
+            filterDocs[i].path =
+              "/" + this.postPath + "/" + filterDocs[i].title;
+          }
         }
       }
       return result;
