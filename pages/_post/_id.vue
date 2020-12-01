@@ -4,7 +4,7 @@
       <MarkdownMain :doc="doc" :prev="prev" :next="next" />
     </div>
     <div v-if="!postId">
-      <PostList :docs="docs" :listTitle="listTitle" />
+      <PostList :postPath="postPath" :docs="docs" :listTitle="listTitle" />
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
         .sortBy("createdAt", "asc")
         .fetch();
       return {
+        postPath: postPath,
         docs,
         listTitle: "#" + tag,
         postId: undefined,

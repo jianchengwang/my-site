@@ -9,7 +9,7 @@
           <li class="list-item" v-for="doc in dy.docs" :key="doc.title"><a :href="doc.path">
               <div class="list-item-title">
                 <span>
-                  {{ doc.title }}
+                  {{ doc.title }} {{ doc.path }}
                   <span :datetime="doc.createdAt" class="list-item-time">{{ doc.createdAt }}</span>
                 </span>
                 <span :datetime="doc.createdAt" class="list-item-time">{{ doc.createdAt }}</span>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  props: ["docs", "listTitle"],
+  props: ["postPath", "docs", "listTitle"],
   data() {
     return {
       searchKey: "",
@@ -50,6 +50,8 @@ export default {
           } else {
             result[result.length - 1].docs.push(filterDocs[i]);
           }
+          console.info(filterDocs[i].path);
+          console.info(this.postPath + "/" + filterDocs[i].title);
         }
       }
       return result;

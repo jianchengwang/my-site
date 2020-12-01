@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!tags">
-      <PostList :docs="docs" :listTitle="listTitle" />
+      <PostList :postPath="postPath" :docs="docs" :listTitle="listTitle" />
     </div>
     <div v-if="tags">
       <PostTags :tags="tags" />
@@ -50,6 +50,7 @@ export default {
         docs,
         listTitle: postPath.toUpperCase(),
         tags: undefined,
+        postPath: postPath,
       };
     }
   },
