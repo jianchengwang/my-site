@@ -1,8 +1,8 @@
 <template>
   <div class="main">
-    <!-- <AppSideBar>
+    <AppSideBar>
       <MarkdownToc :toc="doc.toc" />
-    </AppSideBar> -->
+    </AppSideBar>
     <MarkdownHeader :doc="doc" />
     <MarkdownBody :doc="doc" />
     <MarkdownNav :prev="prev" :next="next" />

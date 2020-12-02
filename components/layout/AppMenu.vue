@@ -28,6 +28,9 @@
       <nuxt-link :class="navClass('/book')" to="/books">
         BOOKS
       </nuxt-link>
+      <a :class="navClass('/files')" target="_blank" href="https://files.jianchengwang.info">
+        FILES
+      </a>
     </nav>
   </div>
 </template>
