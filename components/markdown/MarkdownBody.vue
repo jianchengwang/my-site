@@ -1,5 +1,5 @@
 <template>
-  <div class="post-body">
+  <div>
     <hr />
     <nuxt-content :document="doc" />
     <hr />
@@ -13,7 +13,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.post-body {
-  margin-top: 4rem;
-}
 </style>

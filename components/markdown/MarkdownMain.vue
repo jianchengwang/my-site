@@ -34,4 +34,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+MarkdownBody {
+  text-align: left;
+}
 </style>

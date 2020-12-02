@@ -1,6 +1,6 @@
 <template>
-  <div class="gallery-group flex-1">
-    <h1 class="list-title">{{ title }}</h1>
+  <div>
+    <h1 class="main-title">{{ title }}</h1>
     <div id="gallery">
       <div class="page-subtitle">{{ photos.length }} photos in total</div>
       <client-only>
@@ -53,9 +53,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.gallery-group {
-  text-align: center;
-}
 .page-subtitle {
   text-align: center;
   color: var(--hty-secondary-text-color);

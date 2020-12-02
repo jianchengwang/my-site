@@ -1,6 +1,6 @@
 <template>
-  <div class="main flex-1">
-    <h1 class="list-title">{{ title }}</h1>
+  <div>
+    <h1 class="main-title">{{ title }}</h1>
     <div id="girls">
       <div class="girls-number">{{ girls.length }}</div>
       <div class="girl-banner" v-html="banner"></div>

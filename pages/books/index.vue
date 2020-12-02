@@ -1,6 +1,6 @@
 <template>
-  <div class="main">
-    <h1 class="list-title">{{ title }}</h1>
+  <div>
+    <h1 class="main-title">{{ title }}</h1>
     <div class="book-list">
       <ul>
         <li v-for="book in books" :key="book.title">

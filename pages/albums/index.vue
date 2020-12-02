@@ -1,6 +1,6 @@
 <template>
-  <div class="main flex-1">
-    <h1 class="list-title">Albums</h1>
+  <div>
+    <h1 class="main-title">Albums</h1>
     <div class="page-subtitle">{{ albums.length }} albums in total</div>
     <div class="album-list">
       <a v-for="album in albums" :key="album.caption" class="album-list-item" :href="album.url">

@@ -1,6 +1,6 @@
 <template>
-  <div id="main">
-    <h1 class="list-title">Project</h1>
+  <div>
+    <h1 class="main-title">Project</h1>
     <p>
       I like to write code sometimes. Here are some of my projects:
     </p>
@@ -36,13 +36,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-main {
-  text-align: center;
-  justify-items: center;
-  margin: 3rem auto;
-  max-width: 90vw;
-  width: 54ch;
-}
 p,
 span {
   margin: 1rem auto;

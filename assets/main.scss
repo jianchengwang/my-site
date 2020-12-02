@@ -17,12 +17,15 @@ textarea {
 }
 
 .main {
-  text-align: center;
   margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   padding-bottom: 0.5rem;
+  max-width: 80%;
 }
 
-.list-title {
+.main-title {
   text-align: center;
   font-size: 2rem;
 }

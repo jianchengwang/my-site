@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="list-title">About</h1>
+    <h1 class="main-title">About</h1>
     <MarkdownBody :doc="page" />
   </div>
 </template>

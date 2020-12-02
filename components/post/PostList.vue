@@ -1,6 +1,6 @@
 <template>
-  <div class="main post-list flex-1">
-    <h1 class="list-title">{{ listTitle }}</h1>
+  <div class="post-list">
+    <h1 class="main-title">{{ listTitle }}</h1>
     <input class="list-search" type="text" placeholder="Search..." v-model="searchKey" />
     <div v-if="docsYear.length">
       <div class="list-group" v-for="dy in docsYear" :key="dy.year">
@@ -67,13 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.post-list {
-  width: 80%;
-}
-.list-group {
-  padding-bottom: 0.5rem;
-}
-.list-title {
+.main-title {
   text-align: center;
   font-size: 2rem;
 }
@@ -86,6 +80,9 @@ export default {
   align-items: baseline;
   font-size: 1.8rem;
   font-weight: bold;
+}
+.list-part {
+  min-width: 40rem;
 }
 .list-item {
   line-height: 2rem;
