@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <!-- <AppSideBar>
       <MarkdownToc :toc="doc.toc" />
     </AppSideBar> -->
@@ -34,7 +34,4 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-MarkdownBody {
-  text-align: left;
-}
 </style>

@@ -1,5 +1,6 @@
 ---
 title: Functional Programming in JavaScript
+createdAt: 2019-12-05
 categories: 
 - web
 - js

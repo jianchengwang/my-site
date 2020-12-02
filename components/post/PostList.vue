@@ -1,5 +1,5 @@
 <template>
-  <div class="post-list">
+  <div class="main post-list">
     <h1 class="main-title">{{ listTitle }}</h1>
     <input class="list-search" type="text" placeholder="Search..." v-model="searchKey" />
     <div v-if="docsYear.length">
@@ -71,6 +71,9 @@ export default {
   text-align: center;
   font-size: 2rem;
 }
+.list-group {
+  padding: 0.5rem;
+}
 .list-search {
   padding: 0.2rem;
 }
@@ -82,7 +85,7 @@ export default {
   font-weight: bold;
 }
 .list-part {
-  min-width: 40rem;
+  min-width: 60rem;
 }
 .list-item {
   line-height: 2rem;

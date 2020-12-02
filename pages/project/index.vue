@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <h1 class="main-title">Project</h1>
     <p>
       I like to write code sometimes. Here are some of my projects:

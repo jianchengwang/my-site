@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <h1 class="main-title">Albums</h1>
     <div class="page-subtitle">{{ albums.length }} albums in total</div>
     <div class="album-list">

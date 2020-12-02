@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <div v-if="!tags">
       <PostList :postPath="postPath" :docs="docs" :listTitle="listTitle" />
     </div>

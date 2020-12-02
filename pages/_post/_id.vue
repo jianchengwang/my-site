@@ -42,6 +42,12 @@ export default {
         .sortBy("createdAt", "asc")
         .surround(postId)
         .fetch();
+      if (prev && !prev.path) {
+        prev.path = "/" + postPath + "/" + prev.title;
+      }
+      if (next && !next.path) {
+        next.path = "/" + postPath + "/" + prev.title;
+      }
       return {
         doc,
         prev,

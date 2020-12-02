@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="container">
     <a class="site-author-avatar" href="/about/" title="jiancheng_wang">
       <img width="96" loading="lazy" src="https://blog.res.jianchengwang.info/avatar.jpg" alt="jiancheng_wang"><span class="site-author-status" title="balabala....">😊</span>
     </a>

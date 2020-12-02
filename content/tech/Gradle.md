@@ -1,5 +1,6 @@
 ---
 title: gradle
+createdAt: 2020-06-09
 categories: 
 - java
 - tool

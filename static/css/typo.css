@@ -134,11 +134,11 @@ a:hover {
   text-decoration: underline;
 }
 
-nuxt-content a {
+.markdown-body a {
   border-bottom: 1px solid #1abc9c;
 }
 
-nuxt-content a:hover {
+.markdown-body a:hover {
   border-bottom-color: #555;
   color: #555;
   text-decoration: none;
@@ -155,7 +155,7 @@ ins, a {
  * 被放弃的是 4，之前一直搞错 http://www.w3.org/TR/html401/appendix/changes.html#idx-deprecated
  * 一篇关于 <u> 标签的很好文章：http://html5doctor.com/u-element/
  */
-u, nuxt-content-u {
+u, .markdown-body-u {
   text-decoration: underline;
 }
 
@@ -189,7 +189,7 @@ hr {
 }
 
 /* 底部印刷体、版本等标记 */
-small, nuxt-content-small,
+small, .markdown-body-small,
   /* 图片说明 */
 figcaption {
   font-size: 0.9em;
@@ -235,8 +235,8 @@ strong, b {
 }
 
 /* 保证块/段落之间的空白隔行 */
-nuxt-content p, nuxt-content pre, nuxt-content ul, nuxt-content ol, nuxt-content dl, nuxt-content form, nuxt-content hr, nuxt-content table,
-nuxt-content-p, nuxt-content-pre, nuxt-content-ul, nuxt-content-ol, nuxt-content-dl, nuxt-content-form, nuxt-content-hr, nuxt-content-table, blockquote {
+.markdown-body p, .markdown-body pre, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body form, .markdown-body hr, .markdown-body table,
+.markdown-body-p, .markdown-body-pre, .markdown-body-ul, .markdown-body-ol, .markdown-body-dl, .markdown-body-form, .markdown-body-hr, .markdown-body-table, blockquote {
   margin-bottom: 1.2em
 }
 
@@ -248,89 +248,89 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
-nuxt-content h1, nuxt-content h2, nuxt-content h3, nuxt-content h4, nuxt-content h5, nuxt-content h6,
-nuxt-content-h1, nuxt-content-h2, nuxt-content-h3, nuxt-content-h4, nuxt-content-h5, nuxt-content-h6 {
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6,
+.markdown-body-h1, .markdown-body-h2, .markdown-body-h3, .markdown-body-h4, .markdown-body-h5, .markdown-body-h6 {
   margin-top: 1.2em;
   margin-bottom: 0.6em;
   line-height: 1.35;
 }
 
-nuxt-content h1, nuxt-content-h1 {
+.markdown-body h1, .markdown-body-h1 {
   font-size: 2em;
 }
 
-nuxt-content h2, nuxt-content-h2 {
+.markdown-body h2, .markdown-body-h2 {
   font-size: 1.8em;
 }
 
-nuxt-content h3, nuxt-content-h3 {
+.markdown-body h3, .markdown-body-h3 {
   font-size: 1.6em;
 }
 
-nuxt-content h4, nuxt-content-h4 {
+.markdown-body h4, .markdown-body-h4 {
   font-size: 1.4em;
 }
 
-nuxt-content h5, nuxt-content h6, nuxt-content-h5, nuxt-content-h6 {
+.markdown-body h5, .markdown-body h6, .markdown-body-h5, .markdown-body-h6 {
   font-size: 1.2em;
 }
 
 /* 在文章中，应该还原 ul 和 ol 的样式 */
-nuxt-content ul, nuxt-content-ul {
+.markdown-body ul, .markdown-body-ul {
   margin-left: 1.3em;
   list-style: disc;
 }
 
-nuxt-content ol, nuxt-content-ol {
+.markdown-body ol, .markdown-body-ol {
   list-style: decimal;
   margin-left: 1.9em;
 }
 
-nuxt-content li ul, nuxt-content li ol, nuxt-content-ul ul, nuxt-content-ul ol, nuxt-content-ol ul, nuxt-content-ol ol {
+.markdown-body li ul, .markdown-body li ol, .markdown-body-ul ul, .markdown-body-ul ol, .markdown-body-ol ul, .markdown-body-ol ol {
   margin-bottom: 0.8em;
   margin-left: 2em;
 }
 
-nuxt-content li ul, nuxt-content-ul ul, nuxt-content-ol ul {
+.markdown-body li ul, .markdown-body-ul ul, .markdown-body-ol ul {
   list-style: circle;
 }
 
 /* 同 ul/ol，在文章中应用 table 基本格式 */
-nuxt-content table th, nuxt-content table td, nuxt-content-table th, nuxt-content-table td, nuxt-content table caption {
+.markdown-body table th, .markdown-body table td, .markdown-body-table th, .markdown-body-table td, .markdown-body table caption {
   border: 1px solid #ddd;
   padding: 0.5em 1em;
   color: #666;
 }
 
-nuxt-content table th, nuxt-content-table th {
+.markdown-body table th, .markdown-body-table th {
   background: #fbfbfb;
 }
 
-nuxt-content table thead th, nuxt-content-table thead th {
+.markdown-body table thead th, .markdown-body-table thead th {
   background: #f1f1f1;
 }
 
-nuxt-content table caption {
+.markdown-body table caption {
   border-bottom: none;
 }
 
 /* 去除 webkit 中 input 和 textarea 的默认样式  */
-nuxt-content-input, nuxt-content-textarea {
+.markdown-body-input, .markdown-body-textarea {
   -webkit-appearance: none;
   border-radius: 0;
 }
 
-nuxt-content-em, nuxt-content em, legend, caption {
+.markdown-body-em, .markdown-body em, legend, caption {
   color: #000;
   font-weight: inherit;
 }
 
 /* 着重号，只能在少量（少于100个字符）且全是全角字符的情况下使用 */
-nuxt-content-em {
+.markdown-body-em {
   position: relative;
 }
 
-nuxt-content-em:after {
+.markdown-body-em:after {
   position: absolute;
   top: 0.65em;
   left: 0;
@@ -341,6 +341,6 @@ nuxt-content-em:after {
 }
 
 /* Responsive images */
-nuxt-content img {
+.markdown-body img {
   max-width: 100%;
 }

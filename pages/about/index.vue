@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <h1 class="main-title">About</h1>
     <MarkdownBody :doc="page" />
   </div>

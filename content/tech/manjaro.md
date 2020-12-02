@@ -1,5 +1,6 @@
 ---
 title: manjaro
+createdAt: 2019-09-20
 categories: 
 - linux
 - dist

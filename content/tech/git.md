@@ -1,5 +1,6 @@
 ---
 title: git
+createdAt: 2020-10-09
 categories: 
 - linux
 - soft

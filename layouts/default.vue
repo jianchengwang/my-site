@@ -3,7 +3,7 @@
     <header class="mx-10">
       <AppMenu />
     </header>
-    <Nuxt class="main" />
+    <Nuxt class="flex-1" />
     <AppFooter />
   </div>
 </template>

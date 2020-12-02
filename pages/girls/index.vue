@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <h1 class="main-title">{{ title }}</h1>
     <div id="girls">
       <div class="girls-number">{{ girls.length }}</div>

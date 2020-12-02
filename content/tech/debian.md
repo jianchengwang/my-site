@@ -1,5 +1,6 @@
 ---
 title: debian
+createdAt: 2019-10-09
 categories: 
 - linux
 - dist

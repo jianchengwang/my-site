@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="markdown-body">
     <hr />
     <nuxt-content :document="doc" />
     <hr />
@@ -13,4 +13,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.markdown-body {
+  margin-top: 4rem;
+  text-align: left;
+}
 </style>

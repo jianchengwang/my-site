@@ -1,5 +1,6 @@
 ---
-title: intro to vue
+title: intro-to-vue
+createdAt: 2020-09-13
 categories: 
 - web
 - vue

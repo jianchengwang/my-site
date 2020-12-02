@@ -1,5 +1,6 @@
 ---
 title: centos7
+createdAt: 2019-11-28
 categories: 
 - linux
 - dist

@@ -1,5 +1,6 @@
 ---
 title: es6
+createdAt: 2019-12-09
 categories: 
 - web
 - js
