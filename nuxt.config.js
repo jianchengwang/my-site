@@ -6,7 +6,7 @@ export default {
   head: {
     title: '猫九大大の小窝',
     htmlAttrs: {
-      lang: 'zh'
+      lang: 'zh-Hant',
     },
     meta: [
       { charset: 'utf-8' },
@@ -67,56 +67,4 @@ export default {
       devtools: true
     }
   },
-
-  generate: {
-    // routes: [
-    //   '/about/index',
-    //   '/albums/bilibili',
-    //   '/albums/blessing-on-this-wonderful-world',
-    //   '/albums/chitong',
-    //   '/albums/index',
-    //   '/albums/wallpaper',
-    //   '/books/index',
-    //   '/girls/index',
-    //   '/life/helloword',
-    //   '/store/大荒',
-    //   '/store/断刀残雪',
-    //   '/store/明月泪',
-    //   '/store/温柔刀',
-    //   '/store/长安乱',
-    //   '/tech/canal',
-    //   '/tech/centos7',
-    //   '/tech/curl',
-    //   '/tech/debian',
-    //   '/tech/docker',
-    //   '/tech/electron-vue',
-    //   '/tech/es6',
-    //   '/tech/flask-todolist',
-    //   '/tech/flink',
-    //   '/tech/functional-programming-in-javascript',
-    //   '/tech/git',
-    //   '/tech/Gradle',
-    //   '/tech/intro-to-serverless-functions',
-    //   '/tech/intro-to-vue',
-    //   '/tech/java8',
-    //   '/tech/keep-async-await-from-blocking-execution',
-    //   '/tech/live2d-web',
-    //   '/tech/manjaro',
-    //   '/tech/nacos',
-    //   '/tech/pandas',
-    //   '/tech/ssh',
-    //   '/tech/this-in-javascript',
-    //   '/tech/tlcl',
-    //   '/tech/vps',
-    //   '/tech/web-design-in-4-minutes',
-    // ]
-    // routes() {
-    //   const deployUtils = require('./deploy/utils.js')
-    //   return deployUtils.genRoutes('./content').map(path => {
-    //     return {
-    //       route: path,
-    //     }
-    //   })
-    // }
-  }
 }

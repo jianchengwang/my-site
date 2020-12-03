@@ -27,22 +27,22 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # - name: Setup Node
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: "12.x"
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
 
-      # - run: yarn
-      # - run: yarn generate
+      - run: yarn
+      - run: yarn generate
 
-      # - run: Deploy Github Page Begin!
-      # - name: Deploy Github Page
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./dist
-      #     publish_branch: public
-      # - run: Deploy Github Page Done!
+      - run: Deploy Github Page Begin!
+      - name: Deploy Github Page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+      - run: Deploy Github Page Done!
 
       # - name: Deploy Ty
       #   uses: AEnterprise/rsync-deploy@v1.0  # 使用别人包装好的步骤镜像

@@ -23,6 +23,7 @@ commit_() {
 
 update_() {
   echo 'update begin'
+  git checkout main
   git pull origin main
   deploy_
   echo 'update done'
