@@ -4,9 +4,12 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'my-site',
+    title: '猫九大大の小窝',
+    htmlAttrs: {
+      lang: 'zh'
+    },
     meta: [
-      { lang: 'zh', charset: 'utf-8' },
+      { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
