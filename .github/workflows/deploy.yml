@@ -53,7 +53,6 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
             echo 'test remove ty site begin'
-            cd /root/_git/jianchengwang.github.io
             rm -rf /root/www/blog/*
             echo 'test remove ty site done'
 
@@ -61,9 +60,9 @@ jobs:
         uses: AEnterprise/rsync-deploy@v1.0  # 使用别人包装好的步骤镜像
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}   # 引用配置，SSH私钥
-          ARGS: -avz --delete --exclude='*.log'   # rsync参数，排除.log文件
+          ARGS: -e -c -r --delete   # rsync参数
           SERVER_PORT: ${{ secrets.SSH_PORT }}  # SSH端口
-          FOLDER: ./dist  # 要推送的文件夹，路径相对于代码仓库的根目录
+          FOLDER: ./dist/  # 要推送的文件夹，路径相对于代码仓库的根目录
           SERVER_IP: ${{ secrets.SSH_HOST }}  # 引用配置，服务器的host名（IP或者域名domain.com）
           USERNAME: ${{ secrets.SSH_USERNAME }}  # 引用配置，服务器登录名
           SERVER_DESTINATION: ${{ secrets.SERVER_DESTINATION }}   # 部署到目标文件夹
