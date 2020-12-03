@@ -33,8 +33,8 @@ jobs:
           node-version: "12.x"
 
       - name: Build
-        run yarn
-        run yarn generate
+        - run: yarn
+        - run: yarn generate
 
       - name: Deploy Github Page
         uses: peaceiris/actions-gh-pages@v3
