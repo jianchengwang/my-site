@@ -78,6 +78,7 @@ export default {
 .post-toc {
   margin-top: 4rem;
   margin-left: 4rem;
+  padding-bottom: 2rem;
   ul {
     text-align: left;
   }

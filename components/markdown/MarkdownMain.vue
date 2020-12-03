@@ -1,11 +1,13 @@
 <template>
-  <div class="main">
+  <div>
     <AppSideBar>
       <MarkdownToc :toc="doc.toc" />
     </AppSideBar>
+   <div class="main">
     <MarkdownHeader :doc="doc" />
     <MarkdownBody :doc="doc" />
     <MarkdownNav :prev="prev" :next="next" />
+  </div>
   </div>
 </template>
 
@@ -31,6 +33,12 @@ export default {
       return new Date(date).toLocaleDateString("en", options);
     },
   },
+  mounted () {
+    document.querySelector("#main-body").classList.add('sidebar-main-body');
+  },
+  destroyed () {
+    document.querySelector("#main-body").classList.remove('sidebar-main-body');
+  }
 };
 </script>
 <style lang="scss" scoped>

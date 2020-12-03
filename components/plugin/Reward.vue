@@ -1,19 +1,18 @@
 <template>
   <div id="reward-container">
     <div class="hty-icon-button button-glow" id="reward-button" title="Donate" @click="toggleShowQr">
-      <span class=".icon">Click</span>
+      <span class=".icon">Buye me a cup of coffee or ice coke.</span>
     </div>
-    <div id="reward-comment">Buye me a cup of coffee or ice coke.</div>
     <div id="qr" v-show="showQr">
-      <div style="display:inline-block"><a target="_blank" rel="noopener" href="https://blog.res.jianchengwang.info/alipay.PNG"><img loading="lazy" src="https://blog.res.jianchengwang.info/alipay.PNG" alt="Alipay" title="Alipay"></a>
-        <div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-alipay-line"></use>
-            </svg></span></div>
+      <div style="display:inline-block">
+        <a target="_blank" rel="noopener" href="https://blog.res.jianchengwang.info/alipay.PNG">
+          <img loading="lazy" src="https://blog.res.jianchengwang.info/alipay.PNG" alt="Alipay" title="Alipay">
+        </a>
       </div>
-      <div style="display:inline-block"><a target="_blank" rel="noopener" href="https://blog.res.jianchengwang.info/wxpay.PNG"><img loading="lazy" src="https://blog.res.jianchengwang.info/wxpay.PNG" alt="WechatPay" title="WechatPay"></a>
-        <div><span style="color:#2DC100"><svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-wechat-pay-line"></use>
-            </svg></span></div>
+      <div style="display:inline-block">
+        <a target="_blank" rel="noopener" href="https://blog.res.jianchengwang.info/wxpay.PNG">
+          <img loading="lazy" src="https://blog.res.jianchengwang.info/wxpay.PNG" alt="WechatPay" title="WechatPay">
+        </a>
       </div>
     </div>
   </div>
@@ -36,9 +35,8 @@ export default {
 
 <style lang="scss" scoped>
 #reward-container {
-  padding: 10px 0;
-  margin: 20px auto;
-  width: 90%;
+  margin: 1rem auto;
+  padding-bottom: 0.5rem;
   text-align: center;
 }
 #reward-button {
@@ -48,8 +46,6 @@ export default {
   padding: 0.5rem;
   color: #1abc9c;
   border-radius: 100%;
-  width: 1.5rem;
-  height: 1.5rem;
   text-align: center;
   :hover {
     cursor: pointer;
@@ -61,16 +57,6 @@ export default {
   animation-iteration-count: infinite;
   animation-name: glowing;
   animation-direction: alternate;
-}
-#reward-button .icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  vertical-align: top;
-  margin-top: -0.05rem;
-}
-
-#reward-comment {
-  margin-top: 0.5rem;
 }
 
 #qr {

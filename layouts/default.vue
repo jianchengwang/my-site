@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-6xl mx-auto h-screen flex flex-col">
+  <div id="main-body" class="max-w-6xl mx-auto h-screen flex flex-col">
     <header class="mx-10">
       <AppMenu />
     </header>

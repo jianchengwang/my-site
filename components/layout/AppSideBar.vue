@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div id='sidebar' class="sidebar">
     <slot />
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {};
   top: 0;
   bottom: 0;
   left: 0;
-  width: 20rem;
+  width: 20%;
   background-color: #fff;
   background-image: url(https://cdn.jsdelivr.net/gh/YunYouJun/cdn@master/img/bg/alpha-stars-timing-1.webp);
   background-size: contain;

@@ -12,6 +12,6 @@
 <style lang="scss" scoped>
 #upyun {
   height: 30px;
-  padding-bottom: -5px;
+  padding-bottom: -1rem;
 }
 </style>
