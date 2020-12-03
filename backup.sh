@@ -58,3 +58,8 @@ d)
   type:
     c 提交git
     u 更新博客
+  '
+  ;;
+esac
+
+exit 0
