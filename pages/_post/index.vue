@@ -43,7 +43,15 @@ export default {
       };
     } else {
       const docs = await $content(postPath)
-        .only(["title", "description", "img", "slug", "author", "createdAt"])
+        .only([
+          "title",
+          "description",
+          "img",
+          "slug",
+          "author",
+          "createdAt",
+          "path",
+        ])
         .sortBy("createdAt", "desc")
         .fetch();
       return {

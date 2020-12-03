@@ -37,17 +37,12 @@ export default {
       };
     } else {
       const doc = await $content(postPath, postId).fetch();
+      console.info(doc);
       const [prev, next] = await $content(postPath)
-        .only(["title", "slug"])
+        .only(["title", "slug", "path"])
         .sortBy("createdAt", "asc")
         .surround(postId)
         .fetch();
-      if (prev && !prev.path) {
-        prev.path = "/" + postPath + "/" + prev.title;
-      }
-      if (next && !next.path) {
-        next.path = "/" + postPath + "/" + prev.title;
-      }
       return {
         doc,
         prev,

@@ -27,13 +27,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
+      # - name: Setup Node
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: "12.x"
 
-      - run: yarn
-      - run: yarn generate
+      # - run: yarn
+      # - run: yarn generate
 
       # - run: Deploy Github Page Begin!
       # - name: Deploy Github Page
@@ -44,7 +44,18 @@ jobs:
       #     publish_branch: public
       # - run: Deploy Github Page Done!
 
-      - name: Remove Ty Site Dir
+      # - name: Deploy Ty
+      #   uses: AEnterprise/rsync-deploy@v1.0  # 使用别人包装好的步骤镜像
+      #   env:
+      #     DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}   # 引用配置，SSH私钥
+      #     ARGS: -e -c -r --delete   # rsync参数
+      #     SERVER_PORT: ${{ secrets.SSH_PORT }}  # SSH端口
+      #     FOLDER: ./dist/  # 要推送的文件夹，路径相对于代码仓库的根目录
+      #     SERVER_IP: ${{ secrets.SSH_HOST }}  # 引用配置，服务器的host名（IP或者域名domain.com）
+      #     USERNAME: ${{ secrets.SSH_USERNAME }}  # 引用配置，服务器登录名
+      #     SERVER_DESTINATION: ${{ secrets.SERVER_DESTINATION }}   # 部署到目标文件夹
+
+      - name: Deploy Ty By Shell
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -52,18 +63,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            echo 'test remove ty site begin'
-            rm -rf /root/www/blog/*
-            echo 'test remove ty site done'
-
-      - name: Deploy Ty
-        uses: AEnterprise/rsync-deploy@v1.0  # 使用别人包装好的步骤镜像
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}   # 引用配置，SSH私钥
-          ARGS: -e -c -r --delete   # rsync参数
-          SERVER_PORT: ${{ secrets.SSH_PORT }}  # SSH端口
-          FOLDER: ./dist/  # 要推送的文件夹，路径相对于代码仓库的根目录
-          SERVER_IP: ${{ secrets.SSH_HOST }}  # 引用配置，服务器的host名（IP或者域名domain.com）
-          USERNAME: ${{ secrets.SSH_USERNAME }}  # 引用配置，服务器登录名
-          SERVER_DESTINATION: ${{ secrets.SERVER_DESTINATION }}   # 部署到目标文件夹
+            echo 'deploy begin'
+            /root/_git/my-site/backup.sh u
+            echo 'deploy done'
 

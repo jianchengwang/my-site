@@ -39,18 +39,11 @@ export default {
         let yearTmp = this.utils.formatDate(filterDocs[0].createdAt, "YY");
         let item = filterDocs[0];
         item.createdAt = this.utils.formatDate(item.createdAt);
-        if (!item.path) {
-          item.path = "/" + this.postPath + "/" + item.title;
-        }
         result.push({ year: yearTmp, docs: [item] });
         for (let i = 1; i < filterDocs.length; i++) {
           item = filterDocs[i];
           item.createdAt = this.utils.formatDate(item.createdAt);
 
-          // yarn generate doc.path will be undefined
-          if (!item.path) {
-            item.path = "/" + this.postPath + "/" + item.title;
-          }
           let itemYear = this.utils.formatDate(filterDocs[i].createdAt, "YY");
           if (itemYear != yearTmp) {
             yearTmp = itemYear;
