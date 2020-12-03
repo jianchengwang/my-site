@@ -32,17 +32,16 @@ jobs:
         with:
           node-version: "12.x"
 
-      - run: yarn
-      - run: yarn generate
+      - name: Build
+        run: yarn
+        run: yarn generate
 
-      - run: Deploy Github Page Begin!
       - name: Deploy Github Page
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-      - run: Deploy Github Page Done!
 
       # - name: Deploy Ty
       #   uses: AEnterprise/rsync-deploy@v1.0  # 使用别人包装好的步骤镜像
