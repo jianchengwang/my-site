@@ -1,0 +1,1 @@
+window.__NUXT__={staticAssetsBase:"\u002F_nuxt\u002Fstatic\u002F1607010273",layout:"default",error:null,state:{siedeBar:false},serverRendered:true,routePath:"\u002Ftech\u002Fkeep-async-await-from-blocking-execution",config:{content:{dbHash:"ad7a0cf6"}}};
