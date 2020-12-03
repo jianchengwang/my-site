@@ -1,13 +1,13 @@
 <template>
   <div class="post-nav">
     <div class="post-nav-item">
-      <a v-if="prev" class="post-nav-prev" :href="prev.path" rel="prev" :title="prev.title">
+      <a v-if="prev" class="post-nav-prev" :href="encodeURI(prev.path)" rel="prev" :title="prev.title">
         <span class="post-nav-text">{{ prev.title }}</span>
       </a>
       <span v-else class="post-nav-text">无</span>
     </div>
     <div class="post-nav-item">
-      <a v-if="next" class="post-nav-prev" :href="next.path" rel="prev" :title="next.title">
+      <a v-if="next" class="post-nav-prev" :href="encodeURI(next.path)" rel="prev" :title="next.title">
         <span class="post-nav-text">{{ next.title }}</span>
       </a>
       <span v-else class="post-nav-text">无</span>
