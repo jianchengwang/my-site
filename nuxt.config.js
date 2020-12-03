@@ -6,7 +6,7 @@ export default {
   head: {
     title: '猫九大大の小窝',
     htmlAttrs: {
-      lang: 'zh-Hant',
+      lang: 'zh-cmn-Hans',
     },
     meta: [
       { charset: 'utf-8' },
