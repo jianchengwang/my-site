@@ -6,7 +6,7 @@
       <div class="list-group" v-for="dy in docsYear" :key="dy.year">
         <h2 class="list-year">{{ dy.year }}</h2>
         <ul class="list-part">
-          <li class="list-item" v-for="doc in dy.docs" :key="doc.title"><a :href="encodeURI(doc.path)">
+          <li class="list-item" v-for="doc in dy.docs" :key="doc.title"><a :href="doc.path + '/'">
               <div class="list-item-title">
                 <span>
                   {{ doc.title }}
