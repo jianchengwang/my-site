@@ -37,7 +37,7 @@ export default {
       };
     } else {
       const doc = await $content(postPath, postId).fetch();
-      console.info(doc);
+      console.info(doc.path)
       const [prev, next] = await $content(postPath)
         .only(["title", "slug", "path"])
         .sortBy("createdAt", "asc")
