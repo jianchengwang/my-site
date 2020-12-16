@@ -1,4 +1,4 @@
-> ## About Me
+## About Me
 >
 > 奔三大龄男青年，职业码农，立志全栈，技术九流
 >
@@ -14,7 +14,7 @@
 - ~~养只中华田园猫吧，据说不容易掉毛爱干净~~ 养了只小美短，取名虾哥。。
 - Dota2上1000分吧，打了2500小时，还停留在青铜段位有点不耻呀，虽然严重怀疑此号已废，不过懒得换号，玩着开心就行，emm，顺风靠队友，逆风送成狗，万年打酱油，你喷我就送。
 
-> ## About Site
+## About Site
 >
 > 个人博客，简单记录一下技术，生活上的东东，偶尔会发些莫名其妙的东西，什么类型都有，主要关注以下几点
 
@@ -23,3 +23,32 @@
 - 自己会发光的东西
 - 武侠小说，妈的，来场穿越吧，要求不高，一座城堡，十个老婆，一剑光耀十九州
 - 分享杂谈等
+
+## Contact Me
+>
+> 闲居野士，拒绝骚扰
+
+- [Gmail](mail:jianchengwang80@gmail.com) 不定时回复...
+- [Github](https://github.com/jianchengwang) 以码会友...
+- [Weibo](https://https://weibo.com/u/2894870322) 搞笑视频转发工...
+- [Kgqq](https://kg.qq.com/node/personal?uid=60959f8c272d308233) 想唱就唱，唱得响亮...
+- [Instagram](https://www.instagram.com/jiancheng_wang_/) 至今没发过一张图的...
+
+## Friend Link
+>
+> 小伙伴，or技术大佬的博客站点，欢迎交换友链，或者开往下一个世界 [Travellings](https://travellings.now.sh/)
+
+- [Alone95](https://alone95.cn/)
+- [Tangshuang](https://www.tangshuang.net/)
+- [Zhangxinxu](https://www.zhangxinxu.com/)
+- [Mrbird](https://mrbird.cc/)
+- [Jason](https://www.learnwithjason.dev/)
+- [Frost Ming](https://frostming.com/)
+- [Lunawen](https://blog.lunawen.com/)
+- [GreyLi](https://greyli.com/)
+- [Yunyoujun](https://www.yunyoujun.cn)
+- [Xuxueli](https://www.xuxueli.com/)
+- [Crossoverjie](https://crossoverjie.top/)
+- [Bysocket](https://www.bysocket.com/)
+- [Sendya](https://sendya.me/)
+- [Sarah](https://sarah.dev/)

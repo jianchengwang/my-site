@@ -42,7 +42,7 @@ export default {
 }
 .girl-banner {
   color: darkgray;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   padding-bottom: 0.5rem;
 }
 .girl-items {
@@ -80,7 +80,7 @@ export default {
     padding: 0.2rem;
     background-color: #fff;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.12);
-    transition: 0.5s;
+    transition: 2s;
     margin: 0 auto;
   }
   .girl-name {
@@ -88,8 +88,6 @@ export default {
   }
   .girl-from {
     font-size: 12px;
-    font-family: "Songti SC", "Noto Serif SC", STZhongsong, STKaiti, KaiTi,
-      Roboto, serif;
     font-weight: bold;
     color: darkgray;
   }

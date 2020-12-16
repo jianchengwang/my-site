@@ -4,6 +4,21 @@ title: Lovely Girls
 icon: icon-women-line
 banner: <span title="我全都要！">大家都是我的天使！</span>
 girls:
+  - name: 大污霞
+    avatar: https://blog.res.jianchengwang.info/girls/dawuxia.jpg
+    from: 遥远的21世纪
+    reason: 宇宙超级无敌女流氓，呵!!!!
+
+  - name: 香香大佬
+    avatar: https://blog.res.jianchengwang.info/girls/xiangxiang.jpg
+    from: 遥远的21世纪
+    reason: 冰箱上的女人!!!!
+
+  - name: 陆老大
+    avatar: https://blog.res.jianchengwang.info/girls/lulaoda.jpg
+    from: 失落过去某个时空
+    reason: 未知!!!!
+
   - name: 御坂美琴
     avatar: https://blog.res.jianchengwang.info/girls/yubanmeiqin.png
     from: 某科学的超电磁炮
@@ -49,6 +64,10 @@ girls:
     from: 斩·赤红之瞳
     reason: 傲娇即是正义，哼!!!!
 
+  - name: 三笠
+    avatar: https://blog.res.jianchengwang.info/girls/sanli.jpg
+    from: 进击的巨人
+    reason: 刚毅且温柔的女汉子，哈!!!!
 
 
 ---

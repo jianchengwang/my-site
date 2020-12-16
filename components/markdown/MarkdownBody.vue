@@ -16,5 +16,6 @@ export default {
 .markdown-body {
   margin-top: 4rem;
   text-align: left;
+  color: #333;
 }
 </style>
