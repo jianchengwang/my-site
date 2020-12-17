@@ -71,6 +71,12 @@ export default {
 
   width: 8rem;
   margin: 1rem;
+  img {
+    &:hover {
+      opacity: 0.9; //透明度
+      transform: rotate(360deg) scale(1.2); //旋转
+    }
+  }
   .girl-avatar {
     object-fit: cover;
     object-position: center top;
@@ -80,7 +86,7 @@ export default {
     padding: 0.2rem;
     background-color: #fff;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.12);
-    transition: 2s;
+    transition: 0.5s;
     margin: 0 auto;
   }
   .girl-name {

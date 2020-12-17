@@ -80,6 +80,10 @@ export default {
     height: 10rem;
     object-fit: cover;
     background-color: #eee;
+    &:hover {
+      opacity: 0.9; //透明度
+      transform: scale(1.2);
+    }
   }
   figcaption {
     position: absolute;

@@ -26,29 +26,29 @@
 
 ## Contact Me
 >
-> 闲居野士，拒绝骚扰
+> 闲居野士，欢迎萌妹纸勾搭，汉纸就免了。。。
 
 - [Gmail](mail:jianchengwang80@gmail.com) 不定时回复...
-- [Github](https://github.com/jianchengwang) 以码会友...
-- [Weibo](https://https://weibo.com/u/2894870322) 搞笑视频转发工...
-- [Kgqq](https://kg.qq.com/node/personal?uid=60959f8c272d308233) 想唱就唱，唱得响亮...
+- [Github](https://github.com/jianchengwang) 码农车间，复制黏贴一条龙...
+- [Weibo](https://https://weibo.com/u/2894870322) 原创就免了，我只负责转发...
+- [Kgqq](https://kg.qq.com/node/personal?uid=60959f8c272d308233) 跑调歌曲上百首，耳朵求虐的来...
 - [Instagram](https://www.instagram.com/jiancheng_wang_/) 至今没发过一张图的...
 
 ## Friend Link
 >
-> 小伙伴，or技术大佬的博客站点，欢迎交换友链，或者开往下一个世界 [Travellings](https://travellings.now.sh/)
+> 小伙伴 OR 技术大佬的博客站点，欢迎交换友链，点击开往下一个世界 [Travellings](https://travellings.now.sh/)
 
-- [Alone95](https://alone95.cn/)
-- [Tangshuang](https://www.tangshuang.net/)
-- [Zhangxinxu](https://www.zhangxinxu.com/)
-- [Mrbird](https://mrbird.cc/)
-- [Jason](https://www.learnwithjason.dev/)
-- [Frost Ming](https://frostming.com/)
-- [Lunawen](https://blog.lunawen.com/)
-- [GreyLi](https://greyli.com/)
-- [Yunyoujun](https://www.yunyoujun.cn)
-- [Xuxueli](https://www.xuxueli.com/)
-- [Crossoverjie](https://crossoverjie.top/)
-- [Bysocket](https://www.bysocket.com/)
-- [Sendya](https://sendya.me/)
-- [Sarah](https://sarah.dev/)
+- [Alone95](https://alone95.cn/) 东升大佬，以前同事
+- [Tangshuang](https://www.tangshuang.net/) 唐霜，腾讯前端大佬
+- [Zhangxinxu](https://www.zhangxinxu.com/) 张鑫旭，阅文集团前端大佬，专注于原生前端
+- [Mrbird](https://mrbird.cc/) Mrbird，java相关，Spring Cloud 微服务权限系统作者
+- [Jason](https://www.learnwithjason.dev/) Larn with jason，不定时更新学习新技术视频，
+- [Frost Ming](https://frostming.com/) Frost Ming，python相关
+- [Lunawen](https://blog.lunawen.com/) Luna，澳大利亚程序员，读书笔记不错
+- [GreyLi](https://greyli.com/) 李辉，Flask Web 开发实战作者
+- [Yunyoujun](https://www.yunyoujun.cn) 云游君，hexo-theme-yun作者
+- [Xuxueli](https://www.xuxueli.com/) 许雪里，XXL系列作者，轮子专业户，
+- [Crossoverjie](https://crossoverjie.top/) Crossoverjie，java相关
+- [Bysocket](https://www.bysocket.com/) 泥瓦匠，java相关
+- [Sendya](https://sendya.me/) 言肆，前端相关
+- [Sarah](https://sarah.dev/) Sarah，VUE开发成员，SVG大佬，
