@@ -60,8 +60,8 @@ export default {
         (isGirls && name === "/girls") ||
         (isAlbums && name === "/albums") ||
         (isBooks && name === "/books")
-          ? "text-black font-semibold"
-          : "text-gray-700"
+          ? "text font-semibold"
+          : "text-700"
       }`;
     },
   },
