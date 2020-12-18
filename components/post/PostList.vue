@@ -7,12 +7,11 @@
         <h2 class="list-year">{{ dy.year }}</h2>
         <ul class="list-part">
           <li class="list-item" v-for="doc in dy.docs" :key="doc.title"><a :href="doc.path + '/'">
-              <div class="list-item-title">
-                <span>
+              <div>
+                <span :datetime="doc.createdAt" class="list-item-time">{{ doc.createdAtMD }}</span>
+                <span class="list-item-title">
                   {{ doc.title }}
-                  <span :datetime="doc.createdAt" class="list-item-time">{{ doc.createdAt }}</span>
                 </span>
-                <span :datetime="doc.createdAt" class="list-item-time">{{ doc.createdAt }}</span>
               </div>
             </a></li>
         </ul>
@@ -38,13 +37,12 @@ export default {
       if (filterDocs.length) {
         let yearTmp = this.utils.formatDate(filterDocs[0].createdAt, "YY");
         let item = filterDocs[0];
-        item.createdAt = this.utils.formatDate(item.createdAt);
+        item.createdAtMD = this.utils.formatDate(item.createdAt, "MM-DD");
         result.push({ year: yearTmp, docs: [item] });
         for (let i = 1; i < filterDocs.length; i++) {
           item = filterDocs[i];
-          item.createdAt = this.utils.formatDate(item.createdAt);
-
           let itemYear = this.utils.formatDate(filterDocs[i].createdAt, "YY");
+          item.createdAtMD = this.utils.formatDate(item.createdAt, "MM-DD");
           if (itemYear != yearTmp) {
             yearTmp = itemYear;
             result.push({ year: yearTmp, docs: [item] });
@@ -69,6 +67,7 @@ export default {
 }
 .list-search {
   padding: 0.2rem;
+  color: darkgray;
 }
 .list-year {
   display: flex;
@@ -95,10 +94,7 @@ export default {
   line-height: 2rem;
 }
 .list-item-time {
-  position: absolute;
-  right: 0rem;
-  margin: 0 0.618em 0 2em;
+  margin-right: 1rem;
   line-height: 2rem;
-  flex: 1;
 }
 </style>

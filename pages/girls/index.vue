@@ -10,7 +10,7 @@
             <figure class="girl-info">
               <img class="girl-avatar" loading="lazy" :src="girl.avatar" :alt="girl.name" onerror="this.src=CONFIG.anonymous_image">
               <figcaption class="girl-name">{{ girl.name }}</figcaption>
-              <figcaption class="girl-from">{{ girl.from }}</figcaption>
+              <figcaption class="girl-from">「{{ girl.from }}」</figcaption>
             </figure>
           </a>
         </li>
@@ -74,7 +74,7 @@ export default {
   img {
     &:hover {
       opacity: 0.9; //透明度
-      transform: rotate(360deg) scale(1.2); //旋转
+      transform: rotate(360deg) scale(3); //旋转
     }
   }
   .girl-avatar {

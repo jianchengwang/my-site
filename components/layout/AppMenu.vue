@@ -61,7 +61,7 @@ export default {
         (isAlbums && name === "/albums") ||
         (isBooks && name === "/books")
           ? "text font-semibold"
-          : "text-700"
+          : "text-900"
       }`;
     },
   },

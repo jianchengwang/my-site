@@ -129,7 +129,11 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color: #dd4a68;
+  text-decoration-color: #dd4a68;
+  text-decoration: inherit;
+  font-weight: 900;
 }
 
 .markdown-body a {

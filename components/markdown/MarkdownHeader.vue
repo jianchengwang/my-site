@@ -1,7 +1,9 @@
 <template>
   <header class="post-header">
     <h1 class="post-title">
-      {{ doc.title }}
+      <a class="post-edit-link" :href="editLink" target="_blank" rel="noopener">
+        {{ doc.title }}
+      </a>
     </h1>
     <div class="post-meta">
       <a href="/tag"><span>Tags &gt; </span> </a>
@@ -17,6 +19,15 @@
 <script>
 export default {
   props: ["doc"],
+  computed: {
+    editLink: function () {
+      return (
+        "https://github.com/jianchengwang/my-site/tree/main/content" +
+        this.doc.path +
+        ".md"
+      );
+    },
+  },
 };
 </script>
 
@@ -29,8 +40,9 @@ export default {
     padding: 10px;
     font-size: 2rem;
     font-weight: 900;
-    font-family: "Songti SC", "Noto Serif SC", STZhongsong, STKaiti, KaiTi,
-      Roboto, serif;
+    a {
+      color: #dd4a68 !important;
+    }
   }
   .post-meta {
     font-size: 14px;

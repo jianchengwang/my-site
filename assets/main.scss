@@ -34,6 +34,13 @@ body {
 
 a {
   color: var(--color-primary);
+  & :hover {
+    text-decoration: underline;
+    color: #dd4a68;
+    text-decoration-color: #dd4a68;
+    text-decoration: inherit;
+    font-weight: 900;
+  }
 }
 
 code {
@@ -94,9 +101,5 @@ h1 {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
