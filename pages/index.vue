@@ -28,7 +28,6 @@ export default {
   overflow: hidden;
   .sayWord {
     font-weight: bold;
-    color: #082c40;
     font-size: 4vmin;
     letter-spacing: 0.03em;
     line-height: 1;

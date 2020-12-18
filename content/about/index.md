@@ -26,17 +26,17 @@
 
 ## Contact Me
 >
-> 闲居野士，欢迎萌妹纸勾搭，汉纸就免了。。。
+> 闲居野士，欢迎萌妹纸勾搭，汉纸就算了。。。
 
-- [Gmail](mail:jianchengwang80@gmail.com) 不定时回复...
-- [Github](https://github.com/jianchengwang) 码农车间，复制黏贴一条龙...
-- [Weibo](https://https://weibo.com/u/2894870322) 原创就免了，我只负责转发...
-- [Kgqq](https://kg.qq.com/node/personal?uid=60959f8c272d308233) 跑调歌曲上百首，耳朵求虐的来...
+- [Gmail](mail:jianchengwang80@gmail.com) 谷歌邮箱，半年看下信箱...
+- [Github](https://github.com/jianchengwang) 菜鸡乱开坑，复制黏贴一条龙...
+- [Weibo](https://https://weibo.com/u/2894870322) 基本没原创，快转小能手...
+- [Kgqq](https://kg.qq.com/node/personal?uid=60959f8c272d308233) 跑调歌曲上百首，耳朵找虐的来...
 - [Instagram](https://www.instagram.com/jiancheng_wang_/) 至今没发过一张图的...
 
 ## Friend Link
 >
-> 小伙伴 OR 技术大佬的博客站点，欢迎交换友链，点击开往下一个世界 [Travellings](https://travellings.now.sh/)
+> 小伙伴 OR 技术大佬的博客站点，开往下一个世界 [Travellings](https://travellings.now.sh/)
 
 - [Alone95](https://alone95.cn/) 东升大佬，以前同事
 - [Tangshuang](https://www.tangshuang.net/) 唐霜，腾讯前端大佬
@@ -44,7 +44,7 @@
 - [Mrbird](https://mrbird.cc/) Mrbird，java相关，Spring Cloud 微服务权限系统作者
 - [Jason](https://www.learnwithjason.dev/) Larn with jason，不定时更新学习新技术视频，
 - [Frost Ming](https://frostming.com/) Frost Ming，python相关
-- [Lunawen](https://blog.lunawen.com/) Luna，澳大利亚程序员，读书笔记不错
+- [Lunawen](https://blog.lunawen.com/) Luna，澳大利亚小姐姐，读书笔记不错
 - [GreyLi](https://greyli.com/) 李辉，Flask Web 开发实战作者
 - [Yunyoujun](https://www.yunyoujun.cn) 云游君，hexo-theme-yun作者
 - [Xuxueli](https://www.xuxueli.com/) 许雪里，XXL系列作者，轮子专业户，

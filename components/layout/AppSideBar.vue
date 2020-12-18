@@ -16,7 +16,7 @@ export default {};
   bottom: 0;
   left: 0;
   width: 20%;
-  background-image: url(https://cdn.jsdelivr.net/gh/YunYouJun/cdn@master/img/bg/alpha-stars-timing-1.webp);
+  // background-image: url(https://cdn.jsdelivr.net/gh/YunYouJun/cdn@master/img/bg/alpha-stars-timing-1.webp);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom 1rem center;

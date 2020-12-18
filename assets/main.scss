@@ -5,6 +5,7 @@
   --bg: #f3f5f4;
   --bg-secondary: #fff;
   --border-color: #ddd;
+  --code-bg: #f5f2f0;
 }
 
 .dark-mode {
@@ -14,6 +15,7 @@
   --bg: #091a28;
   --bg-secondary: #071521;
   --border-color: #0d2538;
+  --code-bg:#2d2d2d;
 }
 .sepia-mode {
   --color: #433422;
@@ -21,6 +23,7 @@
   --bg: #f1e7d0;
   --bg-secondary: #eae0c9;
   --border-color: #ded0bf;
+  --code-bg: #f5f2f0;
 }
 
 body {
@@ -33,13 +36,25 @@ a {
   color: var(--color-primary);
 }
 
+code {
+  background:var(--code-bg) !important;
+}
+pre {
+  color: var(--color) !important;
+  text-shadow: none !important;
+  background: var(--code-bg) !important;
+}
+
 body,
+table,
+pre,
+code,
 button,
 input,
 select,
 textarea {
   font-family: "EB Garamond","Noto Serif SC", "Mulish", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+    "Helvetica Neue", Arial, sans-serif !important;
 }
 
 .container {

@@ -187,15 +187,15 @@ https://github.com/Yukariin/AzurLaneL2DViewer
 
 |         参数         |             类型              |                             描述                             |  默认  |
 | :------------------: | :---------------------------: | :----------------------------------------------------------: | :----: |
-|         `el`         | [必需] DOM 对象或 jQuery 对象 | 要挂载Live2d模型的元素, 支持DOM选择器和jQuery选择器，例：`document.getElementById('L2dCanvas')`或`document.querySelector('#L2dCanvas')`或`$('#L2dCanvas')` | `null` |
-|   `modelHomePath`    |         [必需] String         |                          模型根目录                          | `null` |
-|       `model`        |         [必需] String         |                         初始显示模型                         | `null` |
-|       `bgImg`        |         [可选] String         |  Canvas背景图片，有图片的话，Canvas的宽高会等于背景图片宽高  | `null` |
-|       `width`        |         [可选] Number         |                    Canvas宽度，单位: `px`                    | `500`  |
-|       `height`       |         [可选] Number         |                    Canvas高度，单位: `px`                    | `300`  |
-|     `autoMotion`     |        [可选] Boolean         |                    是否自动随机触发Motion                    | `true` |
-| `_finishedLoadModel` |        [可选] Function        |                      模型加载完回调函数                      | `null` |
-|       `_onTap`       |        [可选] Function        |        点击模型触发函数，为空的话会默认触发随机Motion        | `null` |
+|         el         | [必需] DOM 对象               | 要挂载Live2d模型的元素                                       | null |
+|   modelHomePath    |         [必需] String         |                          模型根目录                          | null |
+|       model        |         [必需] String         |                         初始显示模型                         | null |
+|       bgImg        |         [可选] String         |  Canvas背景图片，有图片的话，Canvas的宽高会等于背景图片宽高   | null |
+|       width        |         [可选] Number         |                    Canvas宽度，单位: px                      | 500  |
+|       height       |         [可选] Number         |                    Canvas高度，单位: px                      | 300  |
+|     autoMotion     |        [可选] Boolean         |                    是否自动随机触发Motion                    | true |
+| _finishedLoadModel |        [可选] Function        |                      模型加载完回调函数                      | null |
+|       _onTap       |        [可选] Function        |        点击模型触发函数，为空的话会默认触发随机Motion         | null |
 
 ------
 
