@@ -10,7 +10,9 @@
 export default {
   props: ["doc"],
   mounted: function () {
-    this.utils.initClipboard();
+    setTimeout(() => {
+      this.utils.initClipboard();
+    }, 1000);
   },
   head: {
     link: [

@@ -25,7 +25,7 @@
       <nuxt-link :class="navClass('/albums')" to="/albums">
         Albums
       </nuxt-link>
-      <nuxt-link :class="navClass('/book')" to="/books">
+      <nuxt-link :class="navClass('/books')" to="/books">
         BOOKS
       </nuxt-link>
       <a :class="navClass('/files')" target="_blank" href="https://files.jianchengwang.info">
@@ -67,3 +67,5 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+</style>
