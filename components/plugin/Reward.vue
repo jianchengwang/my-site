@@ -1,7 +1,7 @@
 <template>
   <div id="reward-container">
     <div class="hty-icon-button button-glow" id="reward-button" title="Donate" @click="toggleShowQr">
-      <span class=".icon">Buye me a cup of coffee or ice coke.</span>
+      <a class=".icon">Buye me a cup of coffee or ice coke.</a>
     </div>
     <div id="qr" v-show="showQr">
       <div style="display:inline-block">
@@ -50,6 +50,7 @@ export default {
   :hover {
     cursor: pointer;
     text-decoration: underline;
+    font-size: 150%;
   }
 }
 .button-glow {

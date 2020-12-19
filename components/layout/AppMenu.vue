@@ -2,34 +2,37 @@
   <div class="max-w-3xl my-12 ml-auto mr-auto">
     <nav class="flex mb-5 justify-center mx-auto" role="navigation">
       <nuxt-link :class="navClass('/')" to="/">
-        HOME
+        Home
       </nuxt-link>
       <nuxt-link :class="navClass('/tech')" to="/tech">
-        TECH
+        Tech
       </nuxt-link>
       <nuxt-link :class="navClass('/life')" to="/life">
-        LIFE
+        Life
       </nuxt-link>
       <nuxt-link :class="navClass('/store')" to="/store">
-        STORE
+        Store
       </nuxt-link>
       <nuxt-link :class="navClass('/project')" to="/project">
-        PROJECT
+        Project
       </nuxt-link>
       <nuxt-link :class="navClass('/about')" to="/about">
-        ABOUT
+        About
       </nuxt-link>
       <nuxt-link :class="navClass('/girls')" to="/girls">
-        Grils
+        Girls
       </nuxt-link>
       <nuxt-link :class="navClass('/albums')" to="/albums">
         Albums
       </nuxt-link>
       <nuxt-link :class="navClass('/books')" to="/books">
-        BOOKS
+        Books
       </nuxt-link>
-      <a :class="navClass('/files')" target="_blank" href="https://files.jianchengwang.info">
-        FILES
+      <a :class="navClass('/other')" target="_blank" href="https://files.jianchengwang.info">
+        Files
+      </a>
+      <a :class="navClass('/other')" target="_blank" href="https://rainner.github.io/soma-fm-player/#/">
+        FM
       </a>
     </nav>
   </div>

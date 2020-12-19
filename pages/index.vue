@@ -17,6 +17,7 @@ import Reward from "@/components/plugin/Reward.vue";
 
 export default {
   components: {
+    ColorModePicker,
     Reward,
   },
 };
