@@ -73,7 +73,6 @@ export default {
   margin: 1rem;
   img {
     &:hover {
-      opacity: 0.9; //透明度
       transform: rotate(360deg) scale(3); //旋转
     }
   }

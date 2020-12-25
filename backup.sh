@@ -30,8 +30,9 @@ update_() {
 }
 
 deploy_() {
-  yarn &&  yarn generate
-  rm -rf /root/www/blog/* && cp -rf ./dist/. /root/www/blog
+  # yarn &&  yarn generate
+  # rm -rf /root/www/blog/* && cp -rf ./dist/. /root/www/blog
+  yarn && yarn build && pm2 start ./build/main.js
 }
 
 type=$1
