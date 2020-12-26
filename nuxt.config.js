@@ -44,7 +44,6 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/svg',
     '@nuxtjs/color-mode',
-    '@nuxtjs/toast',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -52,7 +51,8 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxtjs/toast',
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)

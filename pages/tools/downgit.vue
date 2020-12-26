@@ -28,7 +28,9 @@ export default {
         if (downloadLink) {
           this.$toast.success("download successfully");
           downloadLink = downloadLink.replace(/[\r\n]/g, "");
+          console.info(downloadLink);
           downloadLink = downloadLink.replace(/\"/g, "");
+          console.info(downloadLink);
           window.open(downloadLink);
         } else {
           this.$toast.error("download failed!!!");
