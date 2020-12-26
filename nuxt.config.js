@@ -43,7 +43,8 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/svg',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@nuxtjs/toast',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
