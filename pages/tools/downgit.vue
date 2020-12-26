@@ -30,12 +30,8 @@ export default {
             title: "Success",
             message: "已生成下载链接，即将下载",
           });
-          console.info(downloadLink);
           downloadLink = downloadLink.replace(/\"/g, "");
-          if (downloadLink.endsWith("/n") || downloadLink.endsWith("\n")) {
-            downloadLink = downloadLink.substring(0, downloadLink.length - 2);
-          }
-          console.info(downloadLink);
+          downloadLink = downloadLink.substring(0, downloadLink.length - 1);
           window.open(downloadLink);
         } else {
           this.$toast.show({
