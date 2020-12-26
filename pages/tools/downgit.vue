@@ -2,7 +2,7 @@
   <div class="main">
     <h1 class="main-title">DownGit</h1>
     <div class="main-body">
-      <input placeholder="GitHub 文件 或者文件夹 链接" :value="gitrep" />
+      <input placeholder="GitHub 文件 或者文件夹 链接" v-model="gitrep" />
       <div class="button-group">
         <a href="javascript:void(0);" @click="download">Download</a>
       </div>
@@ -20,11 +20,14 @@ export default {
   },
   methods: {
     download: async function () {
+      console.info(this.gitrep);
       if (this.gitrep && this.gitrep.startsWith("https://github.com/")) {
         let response = await fetch(`/api/downgit?gitrep=${this.gitrep}`);
         let downloadLink = await response.text();
         if (downloadLink) {
           window.open(downloadLink);
+        } else {
+          alert("download failed!!!");
         }
       } else {
         alert("please input gitrep!!!");
