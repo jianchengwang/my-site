@@ -8,7 +8,8 @@ app.get('/hello', (req, res) => {
 app.get('/downgit', (req, res) => {
   let query = req.query
   const gitrep = query.gitrep
-  const downloadLink = shell.exec(`/root/_sh/downgit/downgit.sh ${gitrep}`)
+  // const downloadLink = shell.exec(`tail -n 1 $(/root/_sh/downgit/downgit.sh ${gitrep})`)
+  const downloadLink = 'https://tmp.jianchengwang.info/jianchengwang.data.main.ml.zip'
   console.info(downloadLink)
   res.send(downloadLink)
 })

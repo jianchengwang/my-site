@@ -21,5 +21,8 @@ albums:
     cover: https://blog.res.jianchengwang.info/albums/wallpaper/1.jpg
     desc: Wallpaper
 
-
+  - caption: 小猫咪虾哥
+    url: /albums/xiage
+    cover: https://blog.res.jianchengwang.info/albums/xiage/1.jpg
+    desc: 美短小猫咪
 ---

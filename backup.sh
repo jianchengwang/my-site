@@ -33,7 +33,8 @@ deploy_() {
   # yarn &&  yarn generate
   # rm -rf /root/www/blog/* && cp -rf ./dist/. /root/www/blog
   kill -9 `netstat -nlp | grep :8081 | awk '{print $7}' | awk -F"/" '{ print $1 }'`
-  yarn && yarn build && nohup yarn start & 
+  yarn && yarn build 
+  nohup yarn start & 
 }
 
 type=$1

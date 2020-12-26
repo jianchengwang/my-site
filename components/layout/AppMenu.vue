@@ -28,11 +28,11 @@
       <nuxt-link :class="navClass('/books')" to="/books">
         Books
       </nuxt-link>
+      <nuxt-link :class="navClass('/tools')" to="/tools">
+        Tools
+      </nuxt-link>
       <a :class="navClass('/other')" target="_blank" href="https://files.jianchengwang.info">
         Files
-      </a>
-      <a :class="navClass('/other')" target="_blank" href="https://rainner.github.io/soma-fm-player/#/">
-        FM
       </a>
     </nav>
   </div>
@@ -53,6 +53,7 @@ export default {
       const isGirls = this.currentPath.startsWith("/girls");
       const isAlbums = this.currentPath.startsWith("/albums");
       const isBooks = this.currentPath.startsWith("/books");
+      const isTools = this.currentPath.startsWith("/tools");
 
       return `uppercase no-underline mx-3 ${
         this.currentPath === name ||
@@ -62,7 +63,8 @@ export default {
         (isAbout && name === "/about") ||
         (isGirls && name === "/girls") ||
         (isAlbums && name === "/albums") ||
-        (isBooks && name === "/books")
+        (isBooks && name === "/books") ||
+        (isTools && name === "/tools")
           ? "text font-semibold"
           : "text-900"
       }`;

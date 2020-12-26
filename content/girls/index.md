@@ -16,7 +16,7 @@ girls:
 
   - name: 陆老大
     avatar: https://blog.res.jianchengwang.info/girls/lulaoda.jpg
-    from: 失落过去某个时空
+    from: 遗失过去某个时空
     reason: 未知!!!!
 
   - name: 御坂美琴
