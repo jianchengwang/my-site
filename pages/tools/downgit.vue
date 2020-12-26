@@ -31,7 +31,7 @@ export default {
             message: "已生成下载链接，即将下载",
           });
           downloadLink = downloadLink.replace(/\"/g, "");
-          downloadLink = downloadLink.substring(0, downloadLink.length - 1);
+          downloadLink = downloadLink.substring(0, downloadLink.length - 2);
           window.open(downloadLink);
         } else {
           this.$toast.show({
