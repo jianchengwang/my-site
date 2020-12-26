@@ -31,7 +31,7 @@ export default {
             title: "Success",
             message: "已生成下载链接，即将下载",
           });
-          downloadLink = downloadLink.replace(/\/n/g, "");
+          downloadLink = downloadLink.replace(/[\n\r]/g, "");
           downloadLink = downloadLink.replace(/\"/g, "");
           window.open(downloadLink);
         } else {
