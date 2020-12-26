@@ -72,7 +72,9 @@ export default {
   width: 8rem;
   margin: 1rem;
   img {
+    opacity: 0.9; //透明度
     &:hover {
+      opacity: 1;
       transform: rotate(360deg) scale(3); //旋转
     }
   }

@@ -6,9 +6,10 @@ app.get('/hello', (req, res) => {
 })
 
 app.get('/downgit', (req, res) => {
-  let params = req.params
-  const gitrep = params.gitrep
+  let query = req.query
+  const gitrep = query.gitrep
   const downloadLink = shell.exec(`/root/_sh/downgit/downgit.sh ${gitrep}`)
+  console.info(downloadLink)
   res.send(downloadLink)
 })
 

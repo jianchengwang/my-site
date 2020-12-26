@@ -1,9 +1,9 @@
 #!/bin/bash
-# delete log
-rm -rf *.log
 # Get real path
 BASEDIR=$(cd `dirname $0` && pwd)
 cd ${BASEDIR}
+# delete log
+rm -rf *.log
 # Log Location on Server.
 LOG_LOCATION=${BASEDIR}
 exec > >(tee -i $LOG_LOCATION/backup.`date +%Y%m%d%H%M%S`.log)
@@ -32,7 +32,8 @@ update_() {
 deploy_() {
   # yarn &&  yarn generate
   # rm -rf /root/www/blog/* && cp -rf ./dist/. /root/www/blog
-  yarn && yarn build && pm2 start ./build/main.js
+  kill -9 `netstat -nlp | grep :8081 | awk '{print $7}' | awk -F"/" '{ print $1 }'`
+  yarn && yarn build && nohup yarn start & 
 }
 
 type=$1
