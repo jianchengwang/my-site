@@ -5,7 +5,7 @@ app.get('/downgit', (req, res) => {
   let query = req.query
   const gitrep = query.gitrep
   targetFilePath = "${gitrep#*${branch}/}"
-  const downloadLink = shell.exec(`tail -n 2 $(/root/_sh/downgit/downgit.sh '${gitrep}')#*downloadLink:`)
+  const downloadLink = shell.exec(`$(/root/_sh/downgit/downgit.sh '${gitrep}') | awk 'END {print}'`)
   res.send(downloadLink)
 })
 
