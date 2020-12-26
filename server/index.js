@@ -5,10 +5,6 @@ app.get('/downgit', (req, res) => {
   let query = req.query
   const gitrep = query.gitrep
   const downloadLink = shell.exec(`/root/_sh/downgit/downgit.sh '${gitrep}' | awk 'END {print}'`)
-  if (downloadLink) {
-    downloadLink = downloadLink.replace(/[\r\n]/g, "")
-    downloadLink = downloadLink.replace(/\"/g, "");
-  }
   res.send(downloadLink)
 })
 
