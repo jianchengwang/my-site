@@ -52,7 +52,7 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    ['nuxt-tailvue', { toast: true }],
+    ['nuxt-tailvue', { all: true }],
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)

@@ -17,6 +17,6 @@ module.exports = {
     },
   },
   content: [
-    './node_modules/tv-toast/**/*.vue'
+    'node_modules/tv-*/dist/tv-*.umd.min.js',
   ]
 };
