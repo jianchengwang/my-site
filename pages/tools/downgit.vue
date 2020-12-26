@@ -24,7 +24,6 @@ export default {
         this.$toast.show("Loading...");
         let response = await fetch(`/api/downgit?gitrep=${this.gitrep}`);
         let downloadLink = await response.text();
-        this.$toast.clear();
         if (downloadLink) {
           this.$toast.show({
             type: "success",
