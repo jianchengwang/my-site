@@ -68,6 +68,10 @@ export default {
     '~/server/index.js'
   ],
 
+  toast: {
+    position: 'top-center',
+  },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
   },

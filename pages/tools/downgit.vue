@@ -20,23 +20,21 @@ export default {
   },
   methods: {
     download: async function () {
-      console.info(this.gitrep);
       if (this.gitrep && this.gitrep.startsWith("https://github.com/")) {
         this.$toast.show("Loading...");
         let response = await fetch(`/api/downgit?gitrep=${this.gitrep}`);
         let downloadLink = await response.text();
+        this.$toast.clear();
         if (downloadLink) {
-          this.$toast.success("download successfully");
-          downloadLink = downloadLink.replace(/[\r\n]/g, "");
-          console.info(downloadLink);
+          this.$toast.success("download successfully", {delay = 2000});
+          downloadLink = downloadLink.replace(/\n/g, "");
           downloadLink = downloadLink.replace(/\"/g, "");
-          console.info(downloadLink);
           window.open(downloadLink);
         } else {
-          this.$toast.error("download failed!!!");
+          this.$toast.error("download failed!!!", {delay = 2000});
         }
       } else {
-        this.$toast.error("please input gitrep!!!");
+        this.$toast.error("please input gitrep!!!", {delay = 2000});
       }
     },
   },
