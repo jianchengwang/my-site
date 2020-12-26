@@ -52,7 +52,7 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/toast',
+    ['nuxt-tailvue', { toast: true }],
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
@@ -67,10 +67,6 @@ export default {
     // API middleware
     '~/server/index.js'
   ],
-
-  toast: {
-    position: 'top-center',
-  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

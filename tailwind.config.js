@@ -16,4 +16,7 @@ module.exports = {
       },
     },
   },
+  content: [
+    './node_modules/tv-toast/**/*.vue'
+  ]
 };

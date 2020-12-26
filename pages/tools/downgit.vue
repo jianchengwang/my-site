@@ -26,15 +26,27 @@ export default {
         let downloadLink = await response.text();
         this.$toast.clear();
         if (downloadLink) {
-          this.$toast.success("download successfully", { delay: 2000 });
-          downloadLink = downloadLink.replace(/\n/g, "");
+          this.$toast.show({
+            type: "success",
+            title: "Success",
+            message: "已生成下载链接，即将下载",
+          });
+          downloadLink = downloadLink.replace(/\/n/g, "");
           downloadLink = downloadLink.replace(/\"/g, "");
           window.open(downloadLink);
         } else {
-          this.$toast.error("download failed!!!", { delay: 2000 });
+          this.$toast.show({
+            type: "danger",
+            title: "Error",
+            message: "下载出现错误，请稍后再试",
+          });
         }
       } else {
-        this.$toast.error("please input gitrep!!!", { delay: 2000 });
+        this.$toast.show({
+          type: "danger",
+          title: "Error",
+          message: "请输入github文件地址",
+        });
       }
     },
   },
