@@ -31,10 +31,10 @@ export default {
             message: "已生成下载链接，即将下载",
           });
           console.info(downloadLink);
+          downloadLink = downloadLink.replace(/\"/g, "");
           if (downloadLink.endsWith("/n") || downloadLink.endsWith("\n")) {
             downloadLink = downloadLink.substring(0, downloadLink.length - 2);
           }
-          downloadLink = downloadLink.replace(/\"/g, "");
           console.info(downloadLink);
           window.open(downloadLink);
         } else {
