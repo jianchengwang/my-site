@@ -35,6 +35,7 @@ deploy_() {
   kill -9 `netstat -nlp | grep :8081 | awk '{print $7}' | awk -F"/" '{ print $1 }'`
   yarn && yarn build 
   nohup yarn start & 
+  echo 'done'
 }
 
 type=$1
