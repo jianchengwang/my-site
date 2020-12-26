@@ -26,15 +26,15 @@ export default {
         let downloadLink = await response.text();
         this.$toast.clear();
         if (downloadLink) {
-          this.$toast.success("download successfully", {delay = 2000});
+          this.$toast.success("download successfully", { delay: 2000 });
           downloadLink = downloadLink.replace(/\n/g, "");
           downloadLink = downloadLink.replace(/\"/g, "");
           window.open(downloadLink);
         } else {
-          this.$toast.error("download failed!!!", {delay = 2000});
+          this.$toast.error("download failed!!!", { delay: 2000 });
         }
       } else {
-        this.$toast.error("please input gitrep!!!", {delay = 2000});
+        this.$toast.error("please input gitrep!!!", { delay: 2000 });
       }
     },
   },
