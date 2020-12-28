@@ -56,8 +56,7 @@ export default {
         .fetch();
       return {
         docs,
-        listTitle: postPath.toUpperCase(),
-        tags: undefined,
+        listTitle: postPath.slice(0,1).toUpperCase() + postPath.slice(1).toLowerCase(),
         postPath: postPath,
       };
     }

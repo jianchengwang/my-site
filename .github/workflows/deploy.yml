@@ -60,6 +60,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
+          command_timeout: 200m
           script: |
             echo 'deploy begin'
             nohup /root/_git/my-site/backup.sh u &
