@@ -16,7 +16,9 @@ module.exports = {
       },
     },
   },
-  content: [
-    'node_modules/tv-*/dist/tv-*.umd.min.js',
-  ]
+  purge: {
+    content: [
+      'node_modules/tv-*/dist/tv-*.umd.min.js',
+    ],
+  },
 };

@@ -62,6 +62,6 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
             echo 'deploy begin'
-            /root/_git/my-site/backup.sh u
+            nohup /root/_git/my-site/backup.sh u &
             echo 'deploy done'
 

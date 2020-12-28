@@ -24,14 +24,14 @@ export default {
         this.$toast.show("Loading...");
         let response = await fetch(`/api/downgit?gitrep=${this.gitrep}`);
         let downloadLink = await response.text();
-        if (downloadLink) {
+        downloadLink = downloadLink.replace(/\"/g, "");
+        downloadLink = downloadLink.substring(0, downloadLink.length - 2);
+        if (downloadLink && downloadLink.length>0) {
           this.$toast.show({
             type: "success",
             title: "Success",
             message: "已生成下载链接，即将下载",
           });
-          downloadLink = downloadLink.replace(/\"/g, "");
-          downloadLink = downloadLink.substring(0, downloadLink.length - 2);
           window.open(downloadLink);
         } else {
           this.$toast.show({
