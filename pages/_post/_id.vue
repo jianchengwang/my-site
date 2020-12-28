@@ -34,7 +34,7 @@ export default {
           "path",
         ])
         .where({ tags: { $contains: tag } })
-        .sortBy("createdAt", "asc")
+        .sortBy("createdAt", "desc")
         .fetch();
       return {
         postPath: postPath,

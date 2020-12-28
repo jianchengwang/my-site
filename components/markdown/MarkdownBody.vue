@@ -1,8 +1,10 @@
 <template>
-  <div class="markdown-body">
-    <hr />
-    <nuxt-content :document="doc" />
-    <hr />
+  <div>
+    <div class="markdown-body">
+      <hr />
+      <nuxt-content :document="doc" />
+      <hr />
+    </div>
   </div>
 </template>
 

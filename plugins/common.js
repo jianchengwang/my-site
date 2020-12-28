@@ -27,7 +27,6 @@ var utils = {
       },
       initClipboard: function () {
         var snippets = document.querySelectorAll('.nuxt-content-highlight');
-        console.info(snippets)
         var htmlCopyButton = `
             <a href="javascript:void(0)" class="codecopy-btn" aria-label="Copy to clipboard">
               Copy

@@ -23,7 +23,7 @@
   --bg: #f1e7d0;
   --bg-secondary: #eae0c9;
   --border-color: #ded0bf;
-  --code-bg: #f5f2f0;
+  --code-bg: rgba(27,31,35,.05);
 }
 
 body {
@@ -50,6 +50,9 @@ pre {
   color: var(--color) !important;
   text-shadow: none !important;
   background: var(--code-bg) !important;
+  code {
+    background: none !important;
+  }
 }
 
 body,
