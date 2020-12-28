@@ -198,11 +198,11 @@ yarn add --dev @nuxtjs/color-mode
 }
 ```
 
-参考https://github.com/nuxt-community/color-mode-module 的example代码，这里不多赘述
+参考[nuxt/color-mode-module](https://github.com/nuxt-community/color-mode-module) 的example代码，这里不多赘述
 
 ## add google fonts
 
-官网地址：https://fonts.google.com/
+官网地址：[https://fonts.google.com/](https://fonts.google.com/)
 
 跟据自己的需要生成字体样式链接，我这边中文使用**Noto+Serif+SC**，英文使用**EB+Garamond**，在`nuxt.config.js`加入样式链接即可
 
@@ -252,7 +252,7 @@ head: {
 
 ## add live2d-web
 
-参考https://github.com/jianchengwang/live2d_models
+参考[jianchengwang/live2d_models](https://github.com/jianchengwang/live2d_models)
 
 我之前hexo里也有用到看板娘，已经封装好了通用的js，在`nuxt-config.js`引入即可
 

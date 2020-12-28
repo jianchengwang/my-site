@@ -14,10 +14,11 @@ import AppFooter from "@/components/layout/AppFooter.vue";
 export default {
   head: {
     script: [
-      // {
-      //   src:
-      //     "https://cdn.jsdelivr.net/gh/jianchengwang/live2d_models@main/assets/js/live2dv3.init.js",
-      // },
+      {
+        // src:
+        //   "https://cdn.jsdelivr.net/gh/jianchengwang/live2d_models@main/assets/js/live2dv3.init.js",
+        // mode: "client",
+      },
     ],
   },
   components: {
