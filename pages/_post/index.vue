@@ -55,8 +55,10 @@ export default {
         .sortBy("createdAt", "desc")
         .fetch();
       return {
+        tags: undefined,
         docs,
-        listTitle: postPath.slice(0,1).toUpperCase() + postPath.slice(1).toLowerCase(),
+        listTitle:
+          postPath.slice(0, 1).toUpperCase() + postPath.slice(1).toLowerCase(),
         postPath: postPath,
       };
     }

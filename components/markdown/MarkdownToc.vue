@@ -1,13 +1,13 @@
 <template>
   <div class="post-toc">
     <ul>
-      <li v-for="toc1 of tocItems" :key="toc1.id" :id="'toc-' + toc1.id" class="toc1" @click="tableOfContentsHeadingClick(toc1, 1)">
+      <li v-for="toc1 of tocItems" :key="toc1.id" :id="'toc-' + toc1.id" class="toc1" @click.stop="tableOfContentsHeadingClick(toc1, 1)">
         <NuxtLink :to="`#${toc1.id}`">{{ toc1.no }} {{ toc1.text }}</NuxtLink>
         <ul v-if="toc1.children.length">
-          <li v-for="toc2 of toc1.children" :key="toc2.id" :id="'toc-' + toc2.id" class="toc2" @click="tableOfContentsHeadingClick(toc2, 2)">
+          <li v-for="toc2 of toc1.children" :key="toc2.id" :id="'toc-' + toc2.id" class="toc2" @click.stop="tableOfContentsHeadingClick(toc2, 2)">
             <NuxtLink :to="`#${toc2.id}`">{{ toc2.no }} {{ toc2.text }}</NuxtLink>
             <ul v-if="toc2.children.length">
-              <li v-for="toc3 of toc2.children" :key="toc3.id" :id="'toc-' + toc3.id" class="toc3" @click="tableOfContentsHeadingClick(toc3, 3)">
+              <li v-for="toc3 of toc2.children" :key="toc3.id" :id="'toc-' + toc3.id" class="toc3" @click.stop="tableOfContentsHeadingClick(toc3, 3)">
                 <NuxtLink :to="`#${toc3.id}`">{{ toc3.no }} {{ toc3.text }}</NuxtLink>
               </li>
             </ul>
@@ -26,36 +26,11 @@ export default {
       tocItems: [],
       tocIdMap: {},
       currentlyActiveToc: "",
-      observer: null,
-      observerOptions: {
-        root: this.$refs.nuxtContent,
-        threshold: 0.5,
-      },
     };
   },
   computed: {},
   mounted() {
     this.buildTocItems();
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const id = entry.target.getAttribute("id");
-        if (entry.isIntersecting) {
-          this.tableOfContentsHeadingScroll(id);
-        }
-      });
-    }, this.observerOptions);
-
-    // Track all sections that have an `id` applied
-    document
-      .querySelectorAll(
-        ".nuxt-content h1[id], .nuxt-content h2[id], .nuxt-content h3[id]"
-      )
-      .forEach((section) => {
-        this.observer.observe(section);
-      });
-  },
-  beforeDestroy() {
-    this.observer.disconnect();
   },
   methods: {
     buildTocItems() {
@@ -136,8 +111,24 @@ export default {
     showUl(ul, index) {
       if (ul) {
         ul.style.display = "block";
-        let activedTocList = ul.querySelectorAll("li");
-        this.showTocChildren(activedTocList, false);
+        if (index == 1) {
+          let activedTocList = ul.querySelectorAll(".toc2");
+          this.showTocChildren(activedTocList, false);
+        } else {
+          let activedTocList = ul.querySelectorAll("li");
+          this.showTocChildren(activedTocList, false);
+        }
+        if (index == 3) {
+          if (ul.parentNode) {
+            ul.parentNode.style.display = "block";
+            if (ul.parentNode.parentNode) {
+              let activedTocList = ul.parentNode.parentNode.querySelectorAll(
+                ".toc2"
+              );
+              this.showTocChildren(activedTocList, false);
+            }
+          }
+        }
       }
     },
     showTocChildren(tocList, hiden) {

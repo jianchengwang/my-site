@@ -50,7 +50,7 @@ export default {
       transition: 0.8s;
       &:hover {
         opacity: 0.9; //透明度
-        transform: rotate(360deg) scale(1.2); //旋转
+        transform: rotate(360deg); //旋转
       }
     }
   }

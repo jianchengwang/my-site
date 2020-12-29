@@ -43,7 +43,13 @@ var utils = {
           wrapper.firstChild.insertAdjacentHTML('beforebegin', htmlCopyButton);
 
           var preSnippet = snippet.firstChild;
-          var lang = (preSnippet.classList[1] || 'code').replace('language-', '').toUpperCase();
+          var lang = 'CODE'
+          for (let i = 0; i < preSnippet.classList.length; i++) {
+            if (preSnippet.classList[i].startsWith('language-')) {
+              lang = preSnippet.classList[i].replace('language-', '').toUpperCase();
+              break;
+            }
+          }
           snippet.setAttribute('data-lang', lang);
         });
 
