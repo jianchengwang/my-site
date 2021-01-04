@@ -25,12 +25,12 @@
       <nuxt-link :class="navClass('/albums')" to="/albums">
         Albums
       </nuxt-link>
-      <nuxt-link :class="navClass('/books')" to="/books">
-        Books
-      </nuxt-link>
       <nuxt-link :class="navClass('/tools')" to="/tools">
         Tools
       </nuxt-link>
+      <a :class="navClass('/other')" target="_blank" href="https://books.jianchengwang.info">
+        Books
+      </a>
       <a :class="navClass('/other')" target="_blank" href="https://files.jianchengwang.info">
         Files
       </a>
