@@ -69,5 +69,10 @@ girls:
     from: 进击的巨人
     reason: 刚毅且温柔的女汉子，哈!!!!
 
+  - name: 祢豆子
+    avatar: https://blog.res.jianchengwang.info/girls/midouzi.jpg
+    from: 鬼灭之刃
+    reason: 早....早上好!!!!
+
 
 ---

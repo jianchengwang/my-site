@@ -13,6 +13,9 @@
       <nuxt-link :class="navClass('/store')" to="/store">
         Store
       </nuxt-link>
+      <nuxt-link :class="navClass('/book')" to="/book">
+        Book
+      </nuxt-link>
       <nuxt-link :class="navClass('/project')" to="/project">
         Project
       </nuxt-link>
@@ -28,9 +31,6 @@
       <nuxt-link :class="navClass('/tools')" to="/tools">
         Tools
       </nuxt-link>
-      <a :class="navClass('/other')" target="_blank" href="https://books.jianchengwang.info">
-        Books
-      </a>
       <a :class="navClass('/other')" target="_blank" href="https://files.jianchengwang.info">
         Files
       </a>
@@ -49,10 +49,10 @@ export default {
       const isTech = this.currentPath.startsWith("/tech/");
       const isLife = this.currentPath.startsWith("/life/");
       const isStore = this.currentPath.startsWith("/store/");
+      const isBook = this.currentPath.startsWith("/book/");
       const isAbout = this.currentPath.startsWith("/about");
       const isGirls = this.currentPath.startsWith("/girls");
       const isAlbums = this.currentPath.startsWith("/albums");
-      const isBooks = this.currentPath.startsWith("/books");
       const isTools = this.currentPath.startsWith("/tools");
 
       return `uppercase no-underline mx-3 ${
@@ -63,7 +63,7 @@ export default {
         (isAbout && name === "/about") ||
         (isGirls && name === "/girls") ||
         (isAlbums && name === "/albums") ||
-        (isBooks && name === "/books") ||
+        (isBook && name === "/book") ||
         (isTools && name === "/tools")
           ? "text font-semibold"
           : "text-900"

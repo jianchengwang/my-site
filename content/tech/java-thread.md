@@ -1,6 +1,6 @@
 ---
 title: java-thread
-createdAt: 2020-01-03
+createdAt: 2021-01-03
 categories: 
 - java
 - javase
@@ -19,7 +19,7 @@ tags:
 
 ## Create thread
 
-一般创建进程，有两种，
+一般创建进程，有三种，
 
 第一种继承`Thread`，然后调用`start`方法
 
@@ -39,7 +39,7 @@ class MyThread extends Thread {
 }
 ```
 
-第二种，是创建建`Thread`实例时，传入一个`Runnable`或者`Callable`实例，
+第二种，是创建建`Thread`实例时，传入一个`Runnable`实例，
 
 ```java
 public class Main {
@@ -57,6 +57,8 @@ class MyRunnable implements Runnable {
 }
 
 ```
+
+第三种，是采用线程池创建，这个下面会介绍，这里不都赘述。
 
 ## Thread State
 
