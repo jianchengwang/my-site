@@ -2,13 +2,13 @@
   <div class="post-toc">
     <ul>
       <li v-for="toc1 of tocItems" :key="toc1.id" :id="'toc-' + toc1.id" class="toc1" @click.stop="tableOfContentsHeadingClick(toc1, 1)">
-        <NuxtLink :to="`#${toc1.id}`">{{ toc1.no }} {{ toc1.text }}</NuxtLink>
+        <NuxtLink :to="`#${toc1.id}`">{{ toc1.text }}</NuxtLink>
         <ul v-if="toc1.children.length">
           <li v-for="toc2 of toc1.children" :key="toc2.id" :id="'toc-' + toc2.id" class="toc2" @click.stop="tableOfContentsHeadingClick(toc2, 2)">
-            <NuxtLink :to="`#${toc2.id}`">{{ toc2.no }} {{ toc2.text }}</NuxtLink>
+            <NuxtLink :to="`#${toc2.id}`">{{ toc2.text }}</NuxtLink>
             <ul v-if="toc2.children.length">
               <li v-for="toc3 of toc2.children" :key="toc3.id" :id="'toc-' + toc3.id" class="toc3" @click.stop="tableOfContentsHeadingClick(toc3, 3)">
-                <NuxtLink :to="`#${toc3.id}`">{{ toc3.no }} {{ toc3.text }}</NuxtLink>
+                <NuxtLink :to="`#${toc3.id}`">{{ toc3.text }}</NuxtLink>
               </li>
             </ul>
           </li>
@@ -160,24 +160,24 @@ export default {
 
 <style lang="scss" scoped>
 .post-toc {
-  margin-top: 4rem;
-  margin-left: 4rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
   padding-bottom: 2rem;
   ul {
     text-align: left;
   }
 }
 .toc1 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 800;
 }
 .toc2 {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
   display: none;
 }
 .toc3 {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 400;
   display: hidden;
 }

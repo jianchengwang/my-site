@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <div v-if="postId">
       <MarkdownMain :doc="doc" :prev="prev" :next="next" />
     </div>

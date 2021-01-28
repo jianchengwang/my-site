@@ -1,5 +1,5 @@
 <template>
-  <div class="main post-list">
+  <div class="post-list">
     <h1 class="main-title">{{ listTitle }}</h1>
     <input class="list-search" type="text" placeholder="Search..." v-model="searchKey" />
     <div v-if="docsYear.length">

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <AppSideBar>
+    <AppSideBar v-show="showToc">
       <MarkdownToc :toc="doc.toc" />
     </AppSideBar>
-    <div class="main">
+    <div>
       <MarkdownHeader :doc="doc" />
       <MarkdownBody :doc="doc" />
       <MarkdownResource v-if="doc.resource" :resource="doc.resource" />
@@ -30,11 +30,14 @@ export default {
     MarkdownNav,
   },
   props: ["doc", "prev", "next"],
+  data () {
+    return {
+      showToc: true
+    }
+  },
   mounted() {
-    document.querySelector("#main-body").classList.add("sidebar-main-body");
   },
   destroyed() {
-    document.querySelector("#main-body").classList.remove("sidebar-main-body");
   },
 };
 </script>
