@@ -3,7 +3,8 @@
     <div class="grid grid-cols-3 gap-2 place-items-auto">
       <a target="_blank" :href="'https://jianchengwang.github.io/epubjs-reader/reader/?book=' + resource+ ''">在线阅读</a>
       <a target="_blank" :href="resource">下载</a>
-      <span><input style="padding: 1px;margin-right: 2px;" v-model="mailTo" /><a href="javascript:void(0)" @click="kindlepush">推送到Kindle</a></span>
+      <a v-if="douban" target="_blank" :href="'https://book.douban.com/subject/' + douban+ ''">豆瓣</a>
+      <!-- <span><input style="padding: 1px;margin-right: 2px;" v-model="mailTo" /><a href="javascript:void(0)" @click="kindlepush">推送到Kindle</a></span> -->
     </div>
     <hr />
   </div>
@@ -11,7 +12,7 @@
 
 <script>
 export default {
-  props: ["resource"],
+  props: ["resource", "douban"],
   data() {
     return {
       mailTo: "jianchengwang80@gmail.com",

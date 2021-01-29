@@ -6,7 +6,7 @@
     <div>
       <MarkdownHeader :doc="doc" />
       <MarkdownBody :doc="doc" />
-      <MarkdownResource v-if="doc.resource" :resource="doc.resource" />
+      <MarkdownResource v-if="doc.resource" :resource="doc.resource" :douban="doc.douban" />
       <MarkdownNav :prev="prev" :next="next" />
     </div>
   </div>
