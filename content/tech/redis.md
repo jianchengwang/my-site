@@ -2,7 +2,8 @@
 title: redis
 createdAt: 2020-03-10
 categories: 
-- database
+- java
+- middleware
 tags:
 - nosql
 - redis
@@ -188,6 +189,8 @@ ZREMRANGEBYSCORE hackers 1940 1960 # 移除1940 1960之间的集合，"Alan Turi
 
 ### Bitmaps
 
+位图是支持按 bit 位来存储信息，可以用来实现 **布隆过滤器（BloomFilter）**
+
 位图不是实际的数据类型，而是在String类型上定义的一组面向位的操作。由于字符串是二进制安全blob，其最大长度为512 MB，因此它们适合设置为232个不同的位
 
 位图最大的优点之一是，在存储信息时，它们通常会极大地节省空间。例如，在一个用增量用户id表示不同用户的系统中，只使用512 MB内存就可以记住40亿用户的单个位信息(例如，知道用户是否想要接收通讯)
@@ -202,12 +205,18 @@ BITCOUNT key
 
 ### HyperLogLogs
 
-HyperLogLog是一种用于统计唯一事物的概率数据结构(技术上这指的是估算一个集合的基数)。通常，计算唯一项需要使用与您想要计算的项数量成比例的内存，因为您需要记住您在过去已经看到的元素，以避免计算它们多次。然而，有一组算法可以用内存来交换精度:你用一个标准误差来结束一个估计的度量，在Redis实现的情况下，这个误差小于1%
+供不精确的去重计数功能，比较适合用来做大规模数据的去重统计，例如统计 UV；
+
+通常，计算唯一项需要使用与您想要计算的项数量成比例的内存，因为您需要记住您在过去已经看到的元素，以避免计算它们多次。然而，有一组算法可以用内存来交换精度:你用一个标准误差来结束一个估计的度量，在Redis实现的情况下，这个误差小于1%
 
 ```shell
 PFADD hll a b c d
 PFCOUNT hll # 4
 ```
+
+### Geospatial
+
+可以用来保存地理位置，并作位置距离计算或者根据半径计算位置等。有没有想过用Redis来实现附近的人？或者计算最优地图路径？
 
 ### Stream
 
@@ -416,11 +425,11 @@ Setting `maxmemory` to zero results into no memory limits. This is the default b
 - **noeviction**: 直接报错
 - **allkeys-lru**: 所有键中删除最近较少使用(LRU)
 - **volatile-lru**: 过期键中删除最近较少使用(LRU)
-- **allkeys-random**: 所有键里随机删除
-- **volatile-random**: 过期集随机删除
+- **allkeys-random**: 所有键中随机删除
+- **volatile-random**: 过期键中随机删除
 - **volatile-ttl**: 清除带有过期集的键，并首先尝试清除具有较短生存时间(TTL)的键
-- **volatile-lfu** 过期键中删除基于LFU算法
-- **allkeys-lfu** 所有键中删除基于LFU算法
+- **volatile-lfu** 过期键中删除最近使用频率最低的键
+- **allkeys-lfu** 所有键中除最近使用频率最低的键
 
 Redis使用近似的LRU算法，避免占据太多内存，4.0后面可以使用LFU算法，更多介绍，请戳[Least Frequently Used eviction mode](http://antirez.com/news/109)
 
@@ -629,7 +638,7 @@ cluster nodes
 
 ### Slots
 
-一个 Redis 集群包含 16384(16k) 个插槽（hash slot）， 数据库中的每个键都属于这 16384 个插槽的其中一个， 集群使用公式 CRC16(key) & 16384 来计算键 key 属于哪个槽， 其中 CRC16(key) 语句用于计算键 key 的 CRC16 校验和
+一个 Redis 集群包含 16384(16k) 个插槽（hash slot）， 数据库中的每个键都属于这 16384 个插槽的其中一个， 集群使用公式 `CRC16(key) & 16383` 来计算键 key 属于哪个槽， 其中 CRC16(key) 语句用于计算键 key 的 CRC16 校验和
 
 集群中的每个节点负责处理一部分插槽。 举个例子， 如果一个集群可以有主节点， 其中：
 
@@ -1096,6 +1105,10 @@ public void lockInterruptibly(long leaseTime, TimeUnit unit) throws InterruptedE
     //get(lockAsync(leaseTime, unit));
 }
 ```
+
+## Interview
+
+参考[redis面试题及答案整理]( https://juejin.cn/post/6844904110840348680)
 
 ## 相关链接
 

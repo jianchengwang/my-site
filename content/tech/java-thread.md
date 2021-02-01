@@ -1,6 +1,6 @@
 ---
 title: java-thread
-createdAt: 2021-01-03
+createdAt: 2020-01-03
 categories: 
 - java
 - javase
@@ -58,7 +58,7 @@ class MyRunnable implements Runnable {
 
 ```
 
-第三种，是采用线程池创建，这个下面会介绍，这里不都赘述。
+第三种，是实现`Callable`接口，这个下面会介绍，这里不都赘述。
 
 ## Thread State
 
