@@ -110,6 +110,30 @@ tags:
 - Statistic
 - jclasslib
 
+### 扩展工具
+
+Tools-External-Tools
+
+这里加了两个反编译的命令，如果需要更详细的也可以使用`javap -c`，
+
+`javap -p`
+
+Programe: `/usr/bin/javap`
+
+Arguments: `-p $FileClass$`
+
+Workdir: `$OutputPath$`
+
+`javap -v / java -verbose`
+
+Programe: `/usr/bin/javap`
+
+Arguments: `-v $FileClass$`
+
+Workdir: `$OutputPath$`
+
+
+
 ## 注册码
 
 参考大佬的博客 https://zhile.io/
