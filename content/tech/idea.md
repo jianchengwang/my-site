@@ -1,6 +1,6 @@
 ---
 title: idea
-createdAt: 2021-12-08
+createdAt: 2021-02-08
 categories: 
 - java
 - ide
@@ -110,7 +110,7 @@ tags:
 - Statistic
 - jclasslib
 
-### 扩展工具
+## 扩展工具
 
 Tools-External-Tools
 

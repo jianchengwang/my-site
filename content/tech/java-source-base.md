@@ -411,6 +411,42 @@ StringBuffer
 
 **StringBuffer 需要考虑线程安全问题，加锁之后再调用**
 
+##### compareTo
+
+```java
+public int compareTo(String anotherString) {
+        int len1 = value.length;
+        int len2 = anotherString.value.length;
+        // 获取到两个字符串长度最短的那个字符长度
+        int lim = Math.min(len1, len2);
+        char v1[] = value;
+        char v2[] = anotherString.value;
+
+        int k = 0;
+        // 对比每一个字符
+        while (k < lim) {
+            char c1 = v1[k];
+            char c2 = v2[k];
+            // 有字符不相等就返回差值
+            if (c1 != c2) {
+                return c1 - c2;
+            }
+            k++;
+        }
+        return len1 - len2;
+    }
+```
+
+还有一个和compareTo() 比较类似的方法compareToIgnoreCase()，用于忽略大小写后比较两个字符串
+
+可以看出compareTo() 方法和equals() 方法都是用于比较两个字符串，但是他们有两点不同
+
+（1）equals() 可以接收一个 Object 类型的参数，而 compareTo() 只能接收一个 String 类型的参数
+
+（2）equals() 返回值为 Boolean，而 compareTo() 的返回值则为 int
+
+它们都可以用于两个字符串的比较，当 equals() 方法返回 true 时，或者是 compareTo() 方法返回 0 时，则表示两个字符串完全相同
+
 ##### hashCode
 
 ```java
@@ -749,11 +785,490 @@ public enum EasySingleton{
 
 ## Set
 
+#### HashMap
 
+##### 底层结构
 
+在 JDK 1.7 中 HashMap 是以数组加链表的形式组成的，JDK 1.8 之后新增了红黑树的组成结构，当链表大于 8 并且哈希表长度大于 64 时，链表结构会转换成红黑树结构
 
+下面看一下定义的常量或者变量
 
+```java
+// 数组默认的初始化长度16
+static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
 
+// 数组最大容量，2的30次幂，即1073741824
+static final int MAXIMUM_CAPACITY = 1 << 30;
+
+// 默认加载因子值
+static final float DEFAULT_LOAD_FACTOR = 0.75f;
+
+// 链表转换为红黑树的长度阈值
+static final int TREEIFY_THRESHOLD = 8;
+
+// 红黑树转换为链表的长度阈值
+static final int UNTREEIFY_THRESHOLD = 6;
+
+// 链表转换为红黑树时，数组容量必须大于等于64
+static final int MIN_TREEIFY_CAPACITY = 64;
+
+// HashMap里键值对个数
+transient int size;
+
+// 扩容阈值，计算方法为 数组容量*加载因子
+int threshold;
+
+// HashMap使用数组存放数据，数组元素类型为Node<K,V>
+transient Node<K,V>[] table;
+
+// 加载因子
+final float loadFactor;
+
+// 用于快速失败，由于HashMap非线程安全，在对HashMap进行迭代时，如果期间其他线程的参与导致HashMap的结构发生变化了（比如put，remove等操作），直接抛出ConcurrentModificationException异常
+transient int modCount;
+```
+
+数组中的元素我们称之为哈希桶，它的定义如下：
+
+```java
+
+    /**
+     * Basic hash bin node, used for most entries.  (See below for
+     * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
+     */
+    static class Node<K,V> implements Map.Entry<K,V> {
+        final int hash;
+        final K key;
+        V value;
+        Node<K,V> next;
+
+        Node(int hash, K key, V value, Node<K,V> next) {
+            this.hash = hash;
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
+
+        public final K getKey()        { return key; }
+        public final V getValue()      { return value; }
+        public final String toString() { return key + "=" + value; }
+
+        public final int hashCode() {
+            return Objects.hashCode(key) ^ Objects.hashCode(value);
+        }
+
+        public final V setValue(V newValue) {
+            V oldValue = value;
+            value = newValue;
+            return oldValue;
+        }
+
+        public final boolean equals(Object o) {
+            if (o == this)
+                return true;
+            if (o instanceof Map.Entry) {
+                Map.Entry<?,?> e = (Map.Entry<?,?>)o;
+                if (Objects.equals(key, e.getKey()) &&
+                    Objects.equals(value, e.getValue()))
+                    return true;
+            }
+            return false;
+        }
+    }
+```
+
+可以看出每个哈希桶中包含了四个字段：hash、key、value、next，其中 next 表示链表的下一个节点
+
+JDK 1.8 之所以添加红黑树是因为一旦链表过长，会严重影响 HashMap 的性能，而红黑树具有快速增删改查的特点，这样就可以有效的解决链表过长时操作比较慢的问题
+
+红黑树的源码如下
+
+```java
+static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
+        TreeNode<K,V> parent;  // 父节点
+        TreeNode<K,V> left; // 左子树
+        TreeNode<K,V> right; // 右子树
+        TreeNode<K,V> prev;    // needed to unlink next upon deletion
+        boolean red; // 颜色属性
+        TreeNode(int hash, K key, V val, Node<K,V> next) {
+            super(hash, key, val, next);
+        }
+
+        /**
+         * 返回当前节点的根节点
+         */
+        final TreeNode<K,V> root() {
+            for (TreeNode<K,V> r = this, p;;) {
+                if ((p = r.parent) == null)
+                    return r;
+                r = p;
+            }
+        }
+```
+
+##### put源码
+
+```java
+public V put(K key, V value) {
+    return putVal(hash(key), key, value, false, true);
+}
+```
+
+put方法通过hash函数计算key对应的哈希值，hash函数源码如下：
+
+```java
+static final int hash(Object key) {
+    int h;
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+}
+```
+
+如果key为null，返回0，不为null，则通过`(h = key.hashCode()) ^ (h >>> 16)`公式计算得到哈希值。
+
+该公式通过hashCode的高16位异或低16位得到哈希值，主要从性能、哈希碰撞角度考虑，减少系统开销，不会造成因为高位没有参与下标计算从而引起的碰撞。
+
+得到key对应的哈希值后，再调用`putVal(hash(key), key, value, false, true)`方法插入元素：
+
+```java
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+               boolean evict) {
+    Node<K,V>[] tab; Node<K,V> p; int n, i;
+    // 如果数组(哈希表)为null或者长度为0，则进行数组初始化操作
+    if ((tab = table) == null || (n = tab.length) == 0)
+        n = (tab = resize()).length;
+    // 根据key的哈希值计算出数据插入数组的下标位置，公式为(n-1)&hash
+    if ((p = tab[i = (n - 1) & hash]) == null)
+    	// 如果该下标位置还没有元素，则直接创建Node对象，并插入
+        tab[i] = newNode(hash, key, value, null);
+    else {
+        Node<K,V> e; K k;
+        // 如果目标位置key已经存在，则直接覆盖
+        if (p.hash == hash &&
+            ((k = p.key) == key || (key != null && key.equals(k))))
+            e = p;
+        // 如果目标位置key不存在，并且节点为红黑树，则插入红黑树中
+        else if (p instanceof TreeNode)
+            e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+        else {
+        	// 否则为链表结构，遍历链表，尾部插入
+            for (int binCount = 0; ; ++binCount) {
+                if ((e = p.next) == null) {
+                    p.next = newNode(hash, key, value, null);
+                    // 如果链表长度大于等于TREEIFY_THRESHOLD，则考虑转换为红黑树
+                    if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        treeifyBin(tab, hash); // 转换为红黑树操作，内部还会判断数组长度是否小于MIN_TREEIFY_CAPACITY，如果是的话不转换
+                    break;
+                }
+                // 如果链表中已经存在该key的话，直接覆盖替换
+                if (e.hash == hash &&
+                    ((k = e.key) == key || (key != null && key.equals(k))))
+                    break;
+                p = e;
+            }
+        }
+        if (e != null) { // existing mapping for key
+        	// 返回被替换的值
+            V oldValue = e.value;
+            if (!onlyIfAbsent || oldValue == null)
+                e.value = value;
+            afterNodeAccess(e);
+            return oldValue;
+        }
+    }
+    // 模数递增
+    ++modCount;
+    // 当键值对个数大于等于扩容阈值的时候，进行扩容操作
+    if (++size > threshold)
+        resize();
+    afterNodeInsertion(evict);
+    return null;
+}
+```
+
+put操作过程总结：
+
+1. 判断HashMap数组是否为空，是的话初始化数组（由此可见，在创建HashMap对象的时候并不会直接初始化数组）；
+
+2. 通过`(n-1) & hash`计算key在数组中的存放索引；
+
+3. 目标索引位置为空的话，直接创建Node存储；
+
+4. 目标索引位置不为空的话，分下面三种情况：
+
+   4.1. key相同，覆盖旧值；
+
+   4.2. 该节点类型是红黑树的话，执行红黑树插入操作；
+
+   4.3. 该节点类型是链表的话，遍历到最后一个元素尾插入，如果期间有遇到key相同的，则直接覆盖。如果链表长度大于等于TREEIFY_THRESHOLD，并且数组容量大于等于MIN_TREEIFY_CAPACITY，则将链表转换为红黑树结构；
+
+5. 判断HashMap元素个数是否大于等于threshold，是的话，进行扩容操作。
+
+##### get源码
+
+```java
+public V get(Object key) {
+    Node<K,V> e;
+    // 对 key 进行哈希操作
+    return (e = getNode(hash(key), key)) == null ? null : e.value;
+}
+final Node<K,V> getNode(int hash, Object key) {
+    Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
+    // 非空判断
+    if ((tab = table) != null && (n = tab.length) > 0 &&
+        (first = tab[(n - 1) & hash]) != null) {
+        // 判断第一个元素是否是要查询的元素
+        if (first.hash == hash && // always check first node
+            ((k = first.key) == key || (key != null && key.equals(k))))
+            return first;
+        // 下一个节点非空判断
+        if ((e = first.next) != null) {
+            // 如果第一节点是树结构，则使用 getTreeNode 直接获取相应的数据
+            if (first instanceof TreeNode)
+                return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+            do { // 非树结构，循环节点判断
+                // hash 相等并且 key 相同，则返回此节点
+                if (e.hash == hash &&
+                    ((k = e.key) == key || (key != null && key.equals(k))))
+                    return e;
+            } while ((e = e.next) != null);
+        }
+    }
+    return null;
+}
+```
+
+##### resize源码
+
+由前面的put源码分析我们知道，数组的初始化和扩容都是通过调用resize方法完成的，
+
+在Java中，数组是无法自动扩容的，所以扩容的方法是使用一个新的数组代替已有的容量小的数组，**简单说就是换一个更大的数组重新映射**
+
+当HashMap中的元素个数超过数组大小 x 加载因子时，就会进行数组扩容，上文中我们知道加载因子默认值为0.75，也就是说，默认情况下，数组大小为16，那么当HashMap中元素个数超过16 x 0.75=12的时候，就把数组的大小扩展为2 x 16=32，
+
+即扩大一倍，然后重新计算每个元素在数组中的位置，而这是一个非常消耗性能的操作，所以如果我们已经预知HashMap中元素的个数，设置HashMap元素的个数能够有效的提高HashMap的性能
+
+比如说，我们有1000个元素new HashMap(1000)，但是理论上来讲new HashMap(1024)更合适，即使指定了1000，HashMap也自动会将其设置为1024
+
+但是new HashMap(1024)还不是更合适的，因为0.75 x 1000 < 1000，也就是说为了让0.75 x size > 1000，我们必须这样new HashMap(2048)才最合适，既考虑了&的问题，也避免了resize的问题
+
+所以现在来关注下resize方法的源码：
+
+```java
+final Node<K,V>[] resize() {
+    // 扩容前的数组
+    Node<K,V>[] oldTab = table;
+    // 扩容前的数组的大小和阈值
+    int oldCap = (oldTab == null) ? 0 : oldTab.length;
+    int oldThr = threshold;
+    // 预定义新数组的大小和阈值
+    int newCap, newThr = 0;
+    if (oldCap > 0) {
+        // 超过最大值就不再扩容了
+        if (oldCap >= MAXIMUM_CAPACITY) {
+            threshold = Integer.MAX_VALUE;
+            return oldTab;
+        }
+        // 扩大容量为当前容量的两倍，但不能超过 MAXIMUM_CAPACITY
+        else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
+                 oldCap >= DEFAULT_INITIAL_CAPACITY)
+            newThr = oldThr << 1; // double threshold
+    }
+    // 当前数组没有数据，使用初始化的值
+    else if (oldThr > 0) // initial capacity was placed in threshold
+        newCap = oldThr;
+    else {               // zero initial threshold signifies using defaults
+        // 如果初始化的值为 0，则使用默认的初始化容量，默认值为16
+        newCap = DEFAULT_INITIAL_CAPACITY;
+        newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+    }
+    // 如果新的容量等于 0
+    if (newThr == 0) {
+        float ft = (float)newCap * loadFactor;
+        newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
+                  (int)ft : Integer.MAX_VALUE);
+    }
+    threshold = newThr; 
+    @SuppressWarnings({"rawtypes","unchecked"})
+    Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
+    // 开始扩容，将新的容量赋值给 table
+    table = newTab;
+    // 原数据不为空，将原数据复制到新 table 中
+    if (oldTab != null) {
+        // 根据容量循环数组，复制非空元素到新 table
+        for (int j = 0; j < oldCap; ++j) {
+            Node<K,V> e;
+            if ((e = oldTab[j]) != null) {
+                oldTab[j] = null;
+                // 如果链表只有一个，则进行直接赋值
+                if (e.next == null)
+                    newTab[e.hash & (newCap - 1)] = e;
+                else if (e instanceof TreeNode)
+                    // 红黑树相关的操作
+                    ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+                else { // preserve order
+                    // 链表复制，JDK 1.8 扩容优化部分
+                    Node<K,V> loHead = null, loTail = null;
+                    Node<K,V> hiHead = null, hiTail = null;
+                    Node<K,V> next;
+                    do {
+                        next = e.next;
+                        // 原索引
+                        if ((e.hash & oldCap) == 0) {
+                          	// 如果原元素位置没有发生变化
+                            if (loTail == null)
+                                loHead = e;
+                            else
+                                loTail.next = e;
+                            loTail = e;
+
+                        }
+                        // 原索引 + oldCap
+                        else {
+                            if (hiTail == null)
+                                hiHead = e;
+                            else
+                                hiTail.next = e;
+                            hiTail = e;
+                        }
+                    } while ((e = next) != null);
+                    // 将原索引放到哈希桶中
+                    if (loTail != null) {
+                        loTail.next = null;
+                        newTab[j] = loHead;
+                    }
+                    // 将原索引 + oldCap 放到哈希桶中
+                    if (hiTail != null) {
+                        hiTail.next = null;
+                        newTab[j + oldCap] = hiHead;
+                    }
+                }
+            }
+        }
+    }
+    return newTab;
+}
+```
+
+更多的可以查看美团的技术博客 https://tech.meituan.com/2016/06/24/java-hashmap.html
+
+这边对链表扩容复制拆分分析一下，主要参考 [深入理解HashMap(四): 关键源码逐行分析之resize扩容](https://segmentfault.com/a/1190000015812438)
+
+```java
+Node<K,V> loHead = null, loTail = null;
+Node<K,V> hiHead = null, hiTail = null;
+```
+
+上面这段定义了四个Node的引用, 从变量命名上,我们初步猜测, 这里定义了两个链表, 我们把它称为 `lo链表` 和 `hi链表`, `loHead` 和 `loTail` 分别指向 `lo链表`的头节点和尾节点, `hiHead` 和 `hiTail`以此类推.
+
+```java
+do {
+    next = e.next;
+    ...
+} while ((e = next) != null);
+```
+
+从上面的框架上来看, 就是在按顺序遍历该存储桶位置上的链表中的节点.
+
+我们再看`if-else` 语句的内容:
+
+```java
+// 插入lo链表
+if (loTail == null)
+    loHead = e;
+else
+    loTail.next = e;
+loTail = e;
+
+// 插入hi链表
+if (hiTail == null)
+    hiHead = e;
+else
+    hiTail.next = e;
+hiTail = e;
+```
+
+上面结构类似的两段看上去就是一个将节点e插入链表的动作.
+
+最后再加上 `if` 块, 则上面这段的目的就很清晰了:
+
+> 我们首先准备了两个链表 `lo` 和 `hi`, 然后我们顺序遍历该存储桶上的链表的每个节点, 如果 `(e.hash & oldCap) == 0`, 我们就将节点放入`lo`链表, 否则, 放入`hi`链表.
+
+```java
+if (loTail != null) {
+    loTail.next = null;
+    newTab[j] = loHead;
+}
+if (hiTail != null) {
+    hiTail.next = null;
+    newTab[j + oldCap] = hiHead;
+}
+```
+
+这一段看上去就很简单了:
+
+> 如果lo链表非空, 我们就把整个lo链表放到新table的`j`位置上
+> 如果hi链表非空, 我们就把整个hi链表放到新table的`j+oldCap`位置上
+
+综上我们知道, 这段代码的意义就是将原来的链表拆分成两个链表, 并将这两个链表分别放到新的table的 `j` 位置和 `j+oldCap` 上, `j`位置就是原链表在原table中的位置, 拆分的标准就是:
+
+```java
+(e.hash & oldCap) == 0
+```
+
+**关于 `(e.hash & oldCap) == 0` `j` 以及 `j+oldCap`**
+
+上面我们已经弄懂了链表拆分的代码, 但是这个拆分条件看上去很奇怪, 这里我们来稍微解释一下:
+
+首先我们要明确三点:
+
+1. oldCap一定是2的整数次幂, 这里假设是2^m
+2. newCap是oldCap的两倍, 则会是2^(m+1)
+3. hash对数组大小取模`(n - 1) & hash` 其实就是取hash的低`m`位
+
+例如:
+我们假设 oldCap = 16, 即 2^4,
+16 - 1 = 15, 二进制表示为 `0000 0000 0000 0000 0000 0000 0000 1111`
+可见除了低4位, 其他位置都是0（简洁起见，高位的0后面就不写了）, 则 `(16-1) & hash` 自然就是取hash值的低4位,我们假设它为 `abcd`.
+
+以此类推, 当我们将oldCap扩大两倍后, 新的index的位置就变成了 `(32-1) & hash`, 其实就是取 hash值的低5位. 那么对于同一个Node, 低5位的值无外乎下面两种情况:
+
+```
+0abcd
+1abcd
+```
+
+其中, `0abcd`与原来的index值一致, 而`1abcd` = `0abcd + 10000` = `0abcd + oldCap`
+
+故虽然数组大小扩大了一倍，但是同一个`key`在新旧table中对应的index却存在一定联系： 要么一致，要么相差一个 `oldCap`。
+
+而新旧index是否一致就体现在hash值的第4位(我们把最低为称作第0位), 怎么拿到这一位的值呢, 只要:
+
+```
+hash & 0000 0000 0000 0000 0000 0000 0001 0000
+```
+
+上式就等效于
+
+```
+hash & oldCap
+```
+
+故得出结论:
+
+> 如果 `(e.hash & oldCap) == 0` 则该节点在新表的下标位置与旧表一致都为 `j`
+> 如果 `(e.hash & oldCap) == 1` 则该节点在新表的下标位置 `j + oldCap`
+
+根据这个条件, 我们将原位置的链表拆分成两个链表, 然后一次性将整个链表放到新的Table对应的位置上.
+
+怎么样? 这个设计是不是很巧妙, 反正LZ是无比佩服源码作者的!
+
+**总结**
+
+1. resize发生在table初始化, 或者table中的节点数超过`threshold`值的时候, `threshold`的值一般为负载因子乘以容量大小.
+2. 每次扩容都会新建一个table, 新建的table的大小为原大小的2倍.
+3. 扩容时,会将原table中的节点re-hash到新的table中, 但节点在新旧table中的位置存在一定联系: 要么下标相同, 要么相差一个`oldCap`(原table的大小).
+
+后续，关于红黑树对相关介绍，会另外写一篇文章记录，这里就不多赘述，关于hashmap，知道大概思想，感兴趣的可以自己写一个简易版的hashmap，
 
 ## 相关链接
 
