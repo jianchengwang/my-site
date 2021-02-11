@@ -785,9 +785,9 @@ public enum EasySingleton{
 
 ## Set
 
-#### HashMap
+### HashMap
 
-##### 底层结构
+#### 底层结构
 
 在 JDK 1.7 中 HashMap 是以数组加链表的形式组成的，JDK 1.8 之后新增了红黑树的组成结构，当链表大于 8 并且哈希表长度大于 64 时，链表结构会转换成红黑树结构
 
@@ -906,7 +906,7 @@ static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
         }
 ```
 
-##### put源码
+#### put源码
 
 ```java
 public V put(K key, V value) {
@@ -1003,7 +1003,7 @@ put操作过程总结：
 
 5. 判断HashMap元素个数是否大于等于threshold，是的话，进行扩容操作。
 
-##### get源码
+#### get源码
 
 ```java
 public V get(Object key) {
@@ -1037,7 +1037,7 @@ final Node<K,V> getNode(int hash, Object key) {
 }
 ```
 
-##### resize源码
+#### resize源码
 
 由前面的put源码分析我们知道，数组的初始化和扩容都是通过调用resize方法完成的，
 
@@ -1269,6 +1269,472 @@ hash & oldCap
 3. 扩容时,会将原table中的节点re-hash到新的table中, 但节点在新旧table中的位置存在一定联系: 要么下标相同, 要么相差一个`oldCap`(原table的大小).
 
 后续，关于红黑树对相关介绍，会另外写一篇文章记录，这里就不多赘述，关于hashmap，知道大概思想，感兴趣的可以自己写一个简易版的hashmap，
+
+### ArrayList
+
+底层基于数组实现的列表
+
+```java
+public class ArrayList<E> extends AbstractList<E>
+        implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+```
+
+这里`RandomAccess`接口主要这个是一个标记性接口，是为了能够更好地判断集合选择更优的遍历方式，提高性能！实现了该接口的话，那么使用普通的for循环来遍历，性能更高，例如arrayList。而没有实现该接口的话，使用Iterator来迭代，这样性能更高，例如linkedList。所以这个标记性只是为了让我们知道我们用什么样的方式去获取数据性能更好。[ArrayList集合实现RandomAccess接口有何作用](https://blog.csdn.net/weixin_39148512/article/details/79234817)
+
+#### 底层结构
+
+ArrayList的底层数据结构是一个Object数组：
+
+```java
+transient Object[] elementData;
+```
+
+```java
+// 缺省容量
+private static final int DEFAULT_CAPACITY = 10;
+// 空对象数组
+private static final Object[] EMPTY_ELEMENTDATA = {};
+// 缺省空对象数组
+private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
+// 元素数组
+transient Object[] elementData;
+//elementData中已存放的元素的个数，注意：不是elementData的容量
+private int size;
+// 最大数组容量
+private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
+```
+
+上面的`elementData`属性采用了`transient来`修饰，表明其不使用Java默认的序列化机制来实例化，但是该属性是ArrayList的底层数据结构，在网络传输中一定需要将其序列化，之后使用的时候还需要反序列化，那不采用Java默认的序列化机制，我们怎么序列化它呢? 那就是使用**writeObject**和**readObject**方法。 这属于序列化的知识，简单说一下，如果目标类中没有定义私有的writeObject或readObject方法，那么序列化和反序列化的时候将调用默认的方法来根据目标类中的属性来进行序列化和反序列化，而如果目标类中定义了私有的writeObject或readObject方法，那么序列化和反序列化的时候将调用目标类指定的writeObject或readObject方法来实现。
+
+#### 构造方法
+
+```java
+ /**
+     * Constructs an empty list with an initial capacity of ten.
+     */
+    public ArrayList() {
+        //EMPTY_ELEMENTDATA：是个空的Object[]， 将elementData初始化，
+        //空的Object[]会给默认大小10，会在add的时候赋值
+        this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+    }
+
+  //根据传入的容量创建ArrayList
+    public ArrayList(int initialCapacity) {
+        if (initialCapacity > 0) {
+            this.elementData = new Object[initialCapacity];
+        } else if (initialCapacity == 0) {
+            this.elementData = EMPTY_ELEMENTDATA;
+        } else {
+            throw new IllegalArgumentException("Illegal Capacity: "+
+                                               initialCapacity);
+        }
+    }
+
+    //创建一个ArrayList，数据为Collection的数据
+    public ArrayList(Collection<? extends E> c) {
+        elementData = c.toArray();
+        if ((size = elementData.length) != 0) {
+            // c.toArray might (incorrectly) not return Object[] (see 6260652)
+            if (elementData.getClass() != Object[].class)
+                elementData = Arrays.copyOf(elementData, size, Object[].class);
+        } else {
+            // replace with empty array.
+            this.elementData = EMPTY_ELEMENTDATA;
+        }
+    }
+```
+
+#### add源码
+
+```java
+	public boolean add(E e) {    
+    //确定内部容量是否够了，size是数组中数据的个数，因为要添加一个元素，所以size+1，
+    //先判断size+1的个数，这个数组能否放得下
+        ensureCapacityInternal(size + 1);  // Increments modCount!!
+     //在数据中正确的位置上放上元素e，并且size++
+        elementData[size++] = e;
+        return true;
+    }
+
+	//插入具体某个位置
+	public void add(int index, E element) {
+        rangeCheckForAdd(index);//检查index也就是插入的位置是否合理。
+
+				//跟上面的分析一样，具体看上面
+        ensureCapacityInternal(size + 1);  // Increments modCount!!
+				//这个方法就是用来在插入元素之后，要将index之后的元素都往后移一位，
+        System.arraycopy(elementData, index, elementData, index + 1,
+                         size - index);
+				//在目标位置上存放元素
+        elementData[index] = element;
+        size++;//size增加1
+    }
+
+```
+
+很明显，`ensureCapacityInterna`l方法是一个判断数组的长度是否满足新增后size的方法，让我们跟进看一下：
+
+```java
+  private void ensureCapacityInternal(int minCapacity) {
+    if (elementData == EMPTY_ELEMENTDATA) { //看，判断初始化的elementData是不是空的数组，也就是没有长度
+      //判断是否新创建数组，如果是则设为默认容量10
+      minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
+    }
+    //这个方法才是真正的判断elementData是否够用
+    ensureExplicitCapacity(minCapacity);
+  }
+```
+
+继续跟进`ensureExplicitCapacity`方法
+
+```java
+  private void ensureExplicitCapacity(int minCapacity) {
+    modCount++; //这个参数用于判断数据结构变化
+    //判断需要的最小容量是否比目前数组的长度length大，如果是，则扩容ArrayList数组
+    if (minCapacity - elementData.length > 0)
+      grow(minCapacity);
+  }
+```
+
+继续跟进`grow`方法
+
+```java
+    private void grow(int minCapacity) {
+        // overflow-conscious code
+        int oldCapacity = elementData.length;
+       //扩容为当前容量的1.5倍
+        int newCapacity = oldCapacity + (oldCapacity >> 1);
+        //这句话就是适应于elementData就空数组的时候，length=0，那么oldCapacity=0，newCapacity=0，所以这个判断成立，在这里就是真正的初始化elementData的大小了，就是为10.前面的工作都是准备工作。
+        if (newCapacity - minCapacity < 0)
+            newCapacity = minCapacity;
+        if (newCapacity - MAX_ARRAY_SIZE > 0)
+            newCapacity = hugeCapacity(minCapacity);
+
+        elementData = Arrays.copyOf(elementData, newCapacity);
+    }
+```
+
+简单看下`hugeCapacity`方法
+
+```java
+//如果minCapacity都大于MAX_ARRAY_SIZE，那么就Integer.MAX_VALUE返回，反之将MAX_ARRAY_SIZE返回。因为maxCapacity是三倍的minCapacity，可能扩充的太大了，就用minCapacity来判断了。
+//Integer.MAX_VALUE:2147483647   MAX_ARRAY_SIZE：2147483639  也就是说最大也就能给到第一个数值。还是超过了这个限制，就要溢出了。相当于arraylist给了两层防护。
+    private static int hugeCapacity(int minCapacity) {
+        if (minCapacity < 0) // overflow
+            throw new OutOfMemoryError();
+        return (minCapacity > MAX_ARRAY_SIZE) ?
+            Integer.MAX_VALUE :
+            MAX_ARRAY_SIZE;
+    }
+```
+
+#### remove源码
+
+```java
+	public E remove(int index) {
+        rangeCheck(index);//检查index的合理性
+
+        modCount++;//这个作用很多，比如用来检测快速失败的一种标志。
+        E oldValue = elementData(index);//通过索引直接找到该元素
+
+        int numMoved = size - index - 1;//计算要移动的位数。
+        if (numMoved > 0)
+						//这个方法也已经解释过了，就是用来移动元素的。
+            System.arraycopy(elementData, index+1, elementData, index,
+                             numMoved);
+				//将--size上的位置赋值为null，让gc(垃圾回收机制)更快的回收它。
+        elementData[--size] = null; // clear to let GC do its work
+				//返回删除的元素。
+        return oldValue;
+    }
+
+	//通过判断Object是否相同来删除
+	public boolean remove(Object o) {
+        if (o == null) {
+            for (int index = 0; index < size; index++)
+                if (elementData[index] == null) {
+                    fastRemove(index);
+                    return true;
+                }
+        } else {
+            for (int index = 0; index < size; index++)
+                if (o.equals(elementData[index])) {
+                    fastRemove(index);
+                    return true;
+                }
+        }
+        return false;
+    }
+```
+
+#### 总结
+
+1. arrayList可以存放null。
+2. arrayList本质上就是一个elementData数组。
+3. arrayList区别于数组的地方在于能够自动扩展大小，其中关键的方法就是gorw()方法。
+4. arrayList由于本质是数组，所以它在数据的查询方面(get)会很快，而在插入(add)删除(remove)这些方面，性能下降很多，要移动数组其他元素才能达到应有的效果
+5. arrayList实现了RandomAccess，所以在遍历它的时候推荐使用for循环。
+
+### LinkedList
+
+LinkedList是一个实现了List接口和Deque接口的双端链表，底层是双向链表，它也可以被当作堆栈、队列或双端队列进行操作。
+ 有关索引的操作可能从链表头开始遍历到链表尾部，也可能从尾部遍历到链表头部，这取决于看索引更靠近哪一端。
+
+- LinkedList 实现 List 接口，能对它进行队列操作。
+- LinkedList 实现 Deque 接口，即能将LinkedList当作双端队列使用。
+- LinkedList 实现了Cloneable接口，即覆盖了函数clone()，能克隆。
+- LinkedList 实现java.io.Serializable接口，这意味着LinkedList支持序列化，能通过序列化去传输。
+- LinkedList不是线程安全的。
+
+```java
+public class LinkedList<E>
+    extends AbstractSequentialList<E>
+    implements List<E>, Deque<E>, Cloneable, java.io.Serializable
+```
+
+#### 底层结构
+
+LinkedList的底层是双向链表，主要是通过Node类来构建。
+
+```java
+    private static class Node<E> {
+        E item;
+        Node<E> next;
+        Node<E> prev;
+
+        Node(Node<E> prev, E element, Node<E> next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
+```
+
+LinkedList内部是一个双端链表结构，有两个变量，first指向链表头部，last指向链表尾部。 LinkedtList内部的成员变量如下：
+
+```java
+
+    /**
+     * Pointer to first node.
+     * Invariant: (first == null && last == null) ||
+     *            (first.prev == null && first.item != null)
+     */
+    transient Node<E> first;
+
+    /**
+     * Pointer to last node.
+     * Invariant: (first == null && last == null) ||
+     *            (last.next == null && last.item != null)
+     */
+    transient Node<E> last;
+```
+
+#### add源码
+
+```java
+    public boolean add(E e) {
+        linkLast(e);
+        return true;
+    }
+    
+    void linkLast(E e) {
+        final Node<E> l = last; //保存原链表尾部节点
+        final Node<E> newNode = new Node<>(l, e, null); //以原链表尾部节点为prev节点创建一个新节点
+        last = newNode; //将链表尾部指向新节点
+        if (l == null) //如果链表为空，那么该节点既是头节点也是尾节点
+            first = newNode;
+        else //链表不为空，那么将该结点作为原链表尾部的后继节点
+            l.next = newNode;
+        size++;
+        modCount++;
+    }
+```
+
+从上面代码可以看到，linkLast方法中就是一个链表尾部添加一个双端节点的操作，但是需要注意对链表为空时头节点的处理。
+
+```java
+    public void add(int index, E element) {
+        checkPositionIndex(index);
+
+        if (index == size)
+            linkLast(element);
+        else
+            linkBefore(element, node(index));
+    }
+    
+    Node<E> node(int index) {
+        // assert isElementIndex(index);
+
+        if (index < (size >> 1)) { //如果索引位置靠链表前半部分，从头开始遍历
+            Node<E> x = first;
+            for (int i = 0; i < index; i++)
+                x = x.next;
+            return x;
+        } else { //否则，从尾开始遍历
+            Node<E> x = last;
+            for (int i = size - 1; i > index; i--)
+                x = x.prev;
+            return x;
+        }
+    }
+    
+    void linkBefore(E e, Node<E> succ) {
+        // assert succ != null;
+        final Node<E> pred = succ.prev;
+        final Node<E> newNode = new Node<>(pred, e, succ);
+        succ.prev = newNode;
+        if (pred == null)
+            first = newNode;
+        else
+            pred.next = newNode;
+        size++;
+        modCount++;
+    }
+```
+
+从上面代码可以看到，`add(int index, E element)`方法主要分为3步：
+
+1. 检查index的范围，否则抛出异常
+2. 如果插入位置是链表尾部，那么调用linkLast方法
+3. 如果插入位置是链表中间，那么调用linkBefore方法
+
+`node(int index)`方法就比较简单，根据index是靠近头部还是尾部选择不同的遍历方向。
+
+`linkBefore(E e, Node succ)`方法表示在succ节点前插入一个值为e的新节点，步骤如下：
+
+1. 将succ节点的前驱节点保存为pred
+2. 创建newNode节点，将newNode的后继指针指向succ，前驱指针指向pred
+3. 将succ的前驱指针指向newNode
+4. 根据pred是否为null，进行不同操作。
+
+- 如果pred为null，说明该节点插入在头节点之前，要重置first头节点
+- 如果pred不为null，那么直接将pred的后继指针指向newNode即可
+
+#### remove源码
+
+```java
+    //删：remove目标节点
+    public E remove(int index) {
+        checkElementIndex(index);//检查是否越界 下标[0,size)
+        return unlink(node(index));//从链表上删除某节点
+    }
+
+    //因为要考虑 null元素，也是分情况遍历
+    public boolean remove(Object o) {
+        if (o == null) {//如果要删除的是null节点(从remove和add 里 可以看出，允许元素为null)
+            //遍历每个节点 对比
+            for (Node<E> x = first; x != null; x = x.next) {
+                if (x.item == null) {
+                    unlink(x);
+                    return true;
+                }
+            }
+        } else {
+            for (Node<E> x = first; x != null; x = x.next) {
+                if (o.equals(x.item)) {
+                    unlink(x);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    //将节点x，从链表中删除,返回删除节点的值
+    E unlink(Node<E> x) {
+        // assert x != null;
+        final E element = x.item;//继续元素值，供返回
+        final Node<E> next = x.next;//保存当前节点的后置节点
+        final Node<E> prev = x.prev;//前置节点
+
+        if (prev == null) {//前置节点为null，
+            first = next;//则首节点为next
+        } else {//否则 更新前置节点的后置节点
+            prev.next = next;
+            x.prev = null;//记得将要删除节点的前置节点置null
+        }
+        //如果后置节点为null，说明是尾节点
+        if (next == null) {
+            last = prev;
+        } else {//否则更新 后置节点的前置节点
+            next.prev = prev;
+            x.next = null;//记得删除节点的后置节点为null
+        }
+        //将删除节点的元素值置null，以便GC
+        x.item = null;
+        size--;//修改size
+        modCount++;//修改modCount
+        return element;//返回删除的元素值
+    }
+
+```
+
+上面unlink方法的代码可以简单分为以下几个步骤：
+ 第一步：得到待删除节点的前驱节点和后继节点
+ 第二步：更新前驱节点和删除节点的prev
+ 第三步：更新后继节点和删除节点的next
+ 第四步：将删除节点的元素值置null，以便GC，修改size值
+ 经过四步，待删除的结点就从链表中脱离了。需要注意的是删除位置是头节点或尾节点时候的处理。
+
+#### Deque接口的方法
+
+`Deque` 是 Double ended queue (双端队列) 的缩写,读音和 deck 一样，蛋壳。
+ Deque接口其具体方法的处理逻辑如下所示：
+
+|          | 头部访问      |               | 尾部访问     |              |
+| -------- | ------------- | ------------- | ------------ | ------------ |
+| 操作     | 抛出异常      | 返回特殊值    | 抛出异常     | 返回特殊值   |
+| 插入操作 | addFirst(e)   | offerFirst(e) | addLast(e)   | offerLast(e) |
+| 删除操作 | removeFirst() | pollFirst()   | removeLast() | pollLast()   |
+| 访问操作 | getFirst()    | peekFirst()   | getLast()    | peekLast()   |
+
+在LinkedList中，返回的特殊值为null或true。举两个简单的例子分析下：
+
+```java
+    public E getFirst() {
+        final Node<E> f = first;
+        if (f == null)
+            throw new NoSuchElementException();
+        return f.item;
+    }
+    
+    public E peekFirst() {
+        final Node<E> f = first;
+        return (f == null) ? null : f.item;
+     }
+
+```
+
+很简单，当first为null时，getFirst()抛出异常，peekFirst()返回特殊值null。
+
+```java
+   public boolean offerFirst(E e) {
+        addFirst(e);
+        return true;
+    }
+    
+    public void addFirst(E e) {
+        linkFirst(e);
+    }
+```
+
+offerFirst方法返回true，addFirst方法无返回。
+
+#### 总结
+
+LinkedList 是双向列表，能存储null值
+
+链表批量增加，是靠for循环遍历原数组，依次执行插入节点操作。对比ArrayList是通过System.arraycopy完成批量增加的。增加一定会修改modCount。
+
+通过下标获取某个node 的时候，会根据index处于前半段还是后半段 进行一个折半，以提升查询效率
+
+删也一定会修改modCount。 按下标删，也是先根据index找到Node，然后去链表上unlink掉这个Node。 按元素删，会先去遍历链表寻找是否有该Node，如果有，去链表上unlink掉这个Node。
+
+改也是先根据index找到Node，然后替换值。改不修改modCount。
+
+查本身就是根据index找到Node。
+
+LinkedList不光能够向前迭代，还能像后迭代，不光能当链表，还能当队列、栈使用
 
 ## 相关链接
 
