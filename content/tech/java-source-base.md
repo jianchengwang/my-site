@@ -1736,6 +1736,157 @@ LinkedList 是双向列表，能存储null值
 
 LinkedList不光能够向前迭代，还能像后迭代，不光能当链表，还能当队列、栈使用
 
+### TreeMap
+
+TreeMap的底层数据结构就是一个红黑树。关于红黑树的知识另外会开个博客，这里不多赘述。
+TreeMap的特点就是存储的时候是根据键Key来进行排序的。其顺序与添加顺序无关，该顺序根据key的自然排序进行排序或者根据构造方法中传入的Comparator比较器进行排序。自然排序要求key需要实现Comparable接口。
+
+#### 底层结构
+
+```java
+    //比较器，若无则按Key的自然排序
+    private final Comparator<? super K> comparator;
+    //树根结点
+    private transient Entry<K,V> root;
+    //树节点个数
+    private transient int size = 0;
+    //用于判断数据是否变化
+    private transient int modCount = 0;
+```
+
+`Entry<K,V>`表示红黑树的一个结点，既然是红黑树，那么每个节点中除了Key-->Value映射之外，必然存储了红黑树节点特有的一些内容
+
+```java
+static final class Entry<K,V> implements Map.Entry<K,V> {
+        K key;
+        V value;
+        Entry<K,V> left;
+        Entry<K,V> right;
+        Entry<K,V> parent;
+        boolean color = BLACK;//黑色表示为true，红色为false
+}
+```
+
+#### 构造方法
+
+```java
+public TreeMap() {
+    comparator = null;
+}
+
+public TreeMap(Comparator<? super K> comparator) {
+    this.comparator = comparator;
+}
+
+
+public TreeMap(Map<? extends K, ? extends V> m) {
+  comparator = null;
+  putAll(m);
+}
+
+public void putAll(Map<? extends K, ? extends V> map) {
+  int mapSize = map.size();
+  //判断map是否SortedMap，不是则采用AbstractMap的putAll
+  if (size==0 && mapSize!=0 && map instanceof SortedMap) {
+    Comparator<?> c = ((SortedMap<?,?>)map).comparator();
+    //同为null或者不为null，类型相同，则进入有序map的构造
+    if (c == comparator || (c != null && c.equals(comparator))) {
+      ++modCount;
+      try {
+        buildFromSorted(mapSize, map.entrySet().iterator(),
+                        null, null);
+      } catch (java.io.IOException cannotHappen) {
+      } catch (ClassNotFoundException cannotHappen) {
+      }
+      return;
+    }
+  }
+  super.putAll(map);
+}
+```
+
+都比较简单，我们主要关注一下`buildFromSorted`方法和`computeRedLevel`方法。TreeMap主要通过这两个方法在初始化的时候构造一个简单的红黑树。
+
+```java
+private static int computeRedLevel(int sz) {
+  int level = 0;
+  for (int m = sz - 1; m >= 0; m = m / 2 - 1)
+    level++;
+  return level;
+}
+```
+
+`computeRedLevel`方法是计算当前结点数的完全二叉树的层数。或者说，着色红色结点的层数。
+TreeMap是如何构造红黑树的呢，简单来说，就是把当前的结点按照完全二叉树的结构来排列，此时，最下层的**符合二叉树又未满足满二叉树** 的那一排结点，就全部设为红色，这样就满足红黑树的条件了。（TreeMap中第一层根结点层数为0）
+
+了解了上面的原理，后面就简单了，接着来看buildFromSorted方法：
+
+```java
+/**
+* level: 当前树的层数，注意：是从0层开始
+* lo: 子树第一个元素的索引
+* hi: 子树最后一个元素的索引
+* redLevel: 上述红节点所在层数
+* it: 传入的map的entries迭代器
+* str: 如果不为空，则从流里读取key-value
+* defaultVal：不为空，则value都用这个值
+*/
+@SuppressWarnings("unchecked")
+private final Entry<K,V> buildFromSorted(int level, int lo, int hi,
+                                         int redLevel,
+                                         Iterator<?> it,
+                                         java.io.ObjectInputStream str,
+                                         V defaultVal)
+  throws  java.io.IOException, ClassNotFoundException {
+  // hi >= lo 说明子树已经构造完成
+  if (hi < lo) return null;
+  // 取中间位置，无符号右移，相当于除2
+  int mid = (lo + hi) >>> 1;
+  Entry<K,V> left  = null;
+  //递归构造左结点
+  if (lo < mid)
+    left = buildFromSorted(level+1, lo, mid - 1, redLevel,
+                           it, str, defaultVal);
+  K key;
+  V value;
+  //递归完左子树后，迭代器的下一个结点就是每棵树或子树的根结点，所以此时获取的key，value就是树根结点的key，value
+  if (it != null) {
+    if (defaultVal==null) {
+      Map.Entry<?,?> entry = (Map.Entry<?,?>)it.next();
+      key = (K)entry.getKey();
+      value = (V)entry.getValue();
+    } else {
+      key = (K)it.next();
+      value = defaultVal;
+    }
+  // 通过流来读取key, value
+  } else {
+    key = (K) str.readObject();
+    value = (defaultVal != null ? defaultVal : (V) str.readObject());
+  }
+  //构建结点
+  Entry<K,V> middle =  new Entry<>(key, value, null);
+  // 这里是判断该节点是否是最下层的叶子结点。
+  if (level == redLevel)
+    middle.color = RED;
+  //如果存在的话，设置左结点，
+  if (left != null) {
+    middle.left = left;
+    left.parent = middle;
+  }
+  // 递归构造右结点
+  if (mid < hi) {
+    Entry<K,V> right = buildFromSorted(level+1, mid+1, hi, redLevel,
+                                       it, str, defaultVal);
+    middle.right = right;
+    right.parent = middle;
+  }
+  return middle;
+}
+```
+
+
+
 ## 相关链接
 
 [java学习笔记](https://juejin.cn/post/6844903740986621966)
