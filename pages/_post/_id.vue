@@ -24,15 +24,18 @@ export default {
     if (postPath === "tag") {
       const tag = postId;
       const docs = await $content("", { deep: true })
-        .only([
-          "title",
-          "description",
-          "img",
-          "slug",
-          "author",
-          "createdAt",
-          "path",
-        ])
+        // .only([
+        //   "title",
+        //   "description",
+        //   "img",
+        //   "slug",
+        //   "author",
+        //   "createdAt",
+        //   "path",
+        //   "type",
+        //   "url",
+        //   "draft",
+        // ])
         .where({ tags: { $contains: tag } })
         .sortBy("createdAt", "desc")
         .fetch();

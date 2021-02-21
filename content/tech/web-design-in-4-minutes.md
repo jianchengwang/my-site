@@ -2,7 +2,7 @@
 title: web-design-in-4-minutes
 createdAt: 2019-07-03
 type: link
-url: https://jianchengwang.info/html/web-design-in-4-minutes/
+url: /html/web-design-in-4-minutes/
 categories: 
 - web
 - css

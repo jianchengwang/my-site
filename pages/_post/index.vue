@@ -43,15 +43,18 @@ export default {
       };
     } else {
       const docs = await $content(postPath)
-        .only([
-          "title",
-          "description",
-          "img",
-          "slug",
-          "author",
-          "createdAt",
-          "path",
-        ])
+        // .only([
+        //   "title",
+        //   "description",
+        //   "img",
+        //   "slug",
+        //   "author",
+        //   "createdAt",
+        //   "path",
+        //   "type",
+        //   "url",
+        //   "draft",
+        // ])
         .sortBy("createdAt", "desc")
         .fetch();
       return {

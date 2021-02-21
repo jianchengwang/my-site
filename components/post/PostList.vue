@@ -6,7 +6,7 @@
       <div class="list-group" v-for="dy in docsYear" :key="dy.year">
         <h2 class="list-year">{{ dy.year }}</h2>
         <ul class="list-part">
-          <li class="list-item" v-for="doc in dy.docs" :key="doc.title"><a :href="doc.path + '/'">
+          <li class="list-item" v-for="doc in dy.docs" :key="doc.title"><a :class="{'linkColor': isLink(doc)}" @click="visitDoc(doc)" href="javascript:void(0);">
               <div>
                 <span :datetime="doc.createdAt" class="list-item-time">{{ doc.createdAtMD }}</span>
                 <span class="list-item-title">
@@ -31,8 +31,11 @@ export default {
   computed: {
     docsYear: function () {
       let result = [];
-      let filterDocs = this.docs.filter((doc) =>
-        doc.title.toLowerCase().includes(this.searchKey.toLowerCase())
+      let filterDocs = this.docs.filter(
+        (doc) =>
+          // 过滤模糊搜索跟草稿文章
+          doc.title.toLowerCase().includes(this.searchKey.toLowerCase()) &&
+          !doc.draft
       );
       if (filterDocs.length) {
         let yearTmp = this.utils.formatDate(filterDocs[0].createdAt, "YY");
@@ -52,6 +55,18 @@ export default {
         }
       }
       return result;
+    },
+  },
+  methods: {
+    isLink: function (doc) {
+      return doc.type && doc.type === "link" && doc.url;
+    },
+    visitDoc: function (doc) {
+      if (this.isLink(doc)) {
+        window.open(doc.url);
+      } else {
+        window.location.href = doc.path + "/";
+      }
     },
   },
 };
@@ -96,5 +111,8 @@ export default {
 .list-item-time {
   margin-right: 1rem;
   line-height: 2rem;
+}
+.linkColor {
+  color: blue;
 }
 </style>
