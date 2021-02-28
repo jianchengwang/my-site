@@ -2,7 +2,6 @@
 title: nacos
 createdAt: 2019-08-19
 categories: 
-- java
 - middleware
 tags: 
 - nacos

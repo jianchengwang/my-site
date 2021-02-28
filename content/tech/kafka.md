@@ -2,7 +2,6 @@
 title: kafka
 createdAt: 2020-02-09
 categories: 
-- java
 - middleware
 tags:
 - kafka
