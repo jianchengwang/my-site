@@ -12,9 +12,10 @@
 - [tableconvert](https://tableconvert.com/) Tableconvert
 - 待定
 
-#### 编程设计
+#### 在线编程工具
 - [precesson](https://www.processon.com/) 在线流程图绘制
 - [diagrams](https://app.diagrams.net/) 在线流程图绘制
+- [excalidraw](https://excalidraw.com/) 开源在线流程图绘制
 - [asciinema](https://asciinema.org/) 记录终端会话
 - [carbon](https://carbon.now.sh/) 创建漂亮的代码图片
 - [slides](https://slides.com/) 在线幻灯片制作
@@ -22,14 +23,21 @@
 - [codepen](https://codepen.io/) CodePen在线编辑器
 - [jsbin](https://jsbin.com/?html,js,output) JsBin在线编辑器
 
+#### 在线编程学习
+- [egghead](https://egghead.io/) 学习前端类库
+- [frontendmasters.com](https://frontendmasters.com/) 前端大佬入门教学，不过感觉都挺基础的
+- [educative](https://www.educative.io/) 在线编程视频
+- [algoexpert](https://www.algoexpert.io/) 算法与数据结构，提供web编程环境
+- [leetcode](https://leetcode.com/) 刷题
+
 #### 读书看报
-- [fm](https://rainner.github.io/soma-fm-player/#/) 在线FM收听
 - [buzzfeed](https://www.buzzfeed.com/) Buzzfeed杂志
 - [9gag](https://9gag.com/) 9gag搞笑图片
 - [englishclub](https://www.englishclub.com/) englishclub英语学习
 - [blinkist](https://www.blinkist.com/) 在线听书
 - [bbcsounds](https://www.bbc.co.uk/sounds) BBC新闻收听
 - [abcradio](https://radio.abc.net.au/) ABC新闻收听
+- [elllo](https://www.elllo.org/) elllo
 
 #### 日常工具
 - [草料二维码](https://cli.im/url) 方便生成二维码
@@ -45,3 +53,14 @@
 - [open-ports-check](https://www.yougetsignal.com/tools/open-ports/) 国外检测端口是否开启
 - [ipip-ping](https://tools.ipip.net/ping.php) 查看网站不同地区的ping值
 - [chianz-ping](http://ping.chinaz.com/) 多点ping测速
+
+#### 休闲娱乐
+- [fm](https://rainner.github.io/soma-fm-player/#/) 在线FM收听
+- [autopiano](https://www.autopiano.cn/) 在线钢琴
+- [gobang](http://gobang.light7.cn/#/) 在线五子棋
+- [chess](https://itlwei.github.io/Chess/) 在线象棋
+
+#### gfw
+- [vultr](https://www.vultr.com/) vultr
+- [bshl](https://23800.top) 冰山互联
+- [naifei.shop](https://www.naifei.shop/) 奈飞小站
