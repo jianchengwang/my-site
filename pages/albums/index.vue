@@ -4,7 +4,7 @@
     <div class="page-subtitle">{{ albums.length }} albums in total</div>
     <div class="album-list">
       <a v-for="album in albums" :key="album.caption" class="album-list-item" :href="album.url">
-        <figure :title="album.desc"><img class="album-list-cover" :src="album.cover" loading="lazy" :alt=" album.caption" οnlοad="this.src=CONFIG.anonymous_image">
+        <figure :title="album.desc"><img class="album-list-cover" v-lazy="album.cover" :alt="album.caption">
           <figcaption>「{{ album.caption }}」</figcaption>
         </figure>
       </a>

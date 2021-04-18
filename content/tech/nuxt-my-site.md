@@ -250,6 +250,36 @@ head: {
   },
 ```
 
+## vue-lazyload
+因为相册有很多图片，为了比较好的体验，一般需要延迟加载，这边使用[vue-lazyload](https://github.com/hilongjw/vue-lazyload)
+```sh
+ yarn add vue-lazyload
+```
+
+在`plugins`创建一个文件`vueLazyLoad.js`
+
+```js
+import Vue from 'vue'
+import VueLazyLoad from 'vue-lazyload'
+
+Vue.use(VueLazyLoad, {
+  preLoad: 1.33, // 预加载的宽高比，4:3
+  error: 'https://blog.res.jianchengwang.info/404.gif', // 加载失败时使用的图片
+  loading: 'https://blog.res.jianchengwang.info/loading.gif', // 加载时的loading图
+  attempt: 2 //尝试加载次数
+})
+```
+
+在`nuxt.config.js`中配置插件：
+
+```js
+plugins: [
+  { src: '~plugins/vueLazyLoad', ssr: false }
+]
+```
+
+将需要懒加载处的`:src`属性改为`v-lazy`，刷新页面，即可看到效果
+
 ## add live2d-web
 
 参考[jianchengwang/live2d_models](https://github.com/jianchengwang/live2d_models)

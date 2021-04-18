@@ -6,7 +6,7 @@
       <client-only>
         <div class="photo-list" id="lightgallery" ref="lightgallery">
           <figure v-for="photo in photos" :key="photo.caption" class="photo-list-item" :data-src="photo.src">
-            <img class="photo-list-cover" :src="photo.src" loading="lazy" alt="1">
+            <img class="photo-list-cover" v-lazy="photo.src" :alt="photo.caption">
             <figcaption>{{ photo.id }}</figcaption>
           </figure>
         </div>

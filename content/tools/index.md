@@ -20,8 +20,15 @@
 - [carbon](https://carbon.now.sh/) 创建漂亮的代码图片
 - [slides](https://slides.com/) 在线幻灯片制作
 - [colorpk](https://react.colorpk.com/#_=_) 舒服的配色方案
+- [codesandbox](https://codesandbox.io/) Sandbox在线编辑器
 - [codepen](https://codepen.io/) CodePen在线编辑器
 - [jsbin](https://jsbin.com/?html,js,output) JsBin在线编辑器
+- [play with docker](https://labs.play-with-docker.com/) 在线学习docker
+- [kubernetes playground](https://www.katacoda.com/courses/kubernetes/playground) 在线学习kubernetes
+- [visualgo](https://algorithm-visualizer.org/) 算法图形化显示
+- [programming-idioms](https://programming-idioms.org/about#about-block-cheatsheets) 对比两种语言的不同
+- [github1s](https://github1s.com/) 在线vscode显示github仓库代码
+
 
 #### 在线编程学习
 - [egghead](https://egghead.io/) 学习前端类库
@@ -58,9 +65,15 @@
 - [fm](https://rainner.github.io/soma-fm-player/#/) 在线FM收听
 - [autopiano](https://www.autopiano.cn/) 在线钢琴
 - [gobang](http://gobang.light7.cn/#/) 在线五子棋
-- [chess](https://itlwei.github.io/Chess/) 在线象棋
+- [huarongdao](https://conwnet.github.io/huarongdao/) 华容道
 
-#### gfw
+#### 第三方服务
 - [vultr](https://www.vultr.com/) vultr
 - [bshl](https://23800.top) 冰山互联
 - [naifei.shop](https://www.naifei.shop/) 奈飞小站
+
+#### 技术文章站点
+- [coderead](http://coderead.cn/) 源码阅读网站
+- [tech meituan](https://tech.meituan.com/) 美团技术博客
+- [mysql taobao](http://mysql.taobao.org/monthly/) 阿里数据库月报
+- [五分钟学算法](https://www.cxyxiaowu.com/) 五分钟学算法

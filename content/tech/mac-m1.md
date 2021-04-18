@@ -76,15 +76,15 @@ https://github.com/oldj/SwitchHosts/
 199.232.68.133 avatars1.githubusercontent.com
 ```
 
-## gfw
+## proxychains-ng
 
-**qv2ray**
+<!-- **qv2ray**
 
 https://github.com/Qv2ray/Qv2ray/
 
 科学上网，基本程序员都必备吧，当然也可以使用[clashX](https://github.com/yichengchen/clashX/releases)
 
-文档参考 https://bluedoc.io/agentneo/docs/mk22
+文档参考 https://bluedoc.io/agentneo/docs/mk22 -->
 
 **proxychains-ng**
 

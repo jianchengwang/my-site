@@ -50,7 +50,7 @@ export default {
       const doc = await $content(postPath, postId).fetch();
       console.info(doc.path);
       const [prev, next] = await $content(postPath)
-        .only(["title", "slug", "path"])
+        .only(["title", "slug", "path", "draft"])
         .sortBy("createdAt", "asc")
         .surround(postId)
         .fetch();
