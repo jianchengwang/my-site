@@ -59,3 +59,37 @@
 - [Bysocket](https://www.bysocket.com/) 泥瓦匠，java相关
 - [Sendya](https://sendya.me/) 言肆，前端相关
 - [Sarah](https://sarah.dev/) Sarah，VUE开发成员，SVG大佬，
+
+## Thanks to
+### JetBrains
+>
+> 特别感谢 JetBrains 为我的开源项目提供免费的 IntelliJ IDEA 授权
+
+![Thanks to JetBrains](https://blog.res.jianchengwang.info/thanks-to-jetbrains.png)
+
+开发者认可
+
+JetBrains 通过向活跃的 Google Developers Expert、Java Champions、Docker Captains、Microsoft MVP 和 ASPInsiders 提供免费的 All Products Pack，表彰技术卓越和社区领导地位。
+
+https://www.jetbrains.com/zh-cn/community/dev-recognition/
+
+开源开发许可证
+
+JetBrains 通过为核心项目贡献者免费提供一套一流的开发者工具来支持非商业开源项目。
+
+https://www.jetbrains.com/zh-cn/community/opensource/#support
+
+### 又拍云
+>
+> 特别感谢又拍云为本网站提供CND，云存储服务等
+
+
+又拍云联盟用户
+
+申请又拍云联盟用户，可以获取每月**10G**云存储，**15GB** CDN流量
+
+https://www.upyun.com/league
+
+又拍云大使
+
+https://console.upyun.com/register/?invite=rkh0nvZw_
