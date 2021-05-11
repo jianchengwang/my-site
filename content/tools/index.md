@@ -28,6 +28,7 @@
 - [visualgo](https://algorithm-visualizer.org/) 算法图形化显示
 - [programming-idioms](https://programming-idioms.org/about#about-block-cheatsheets) 对比两种语言的不同
 - [github1s](https://github1s.com/) 在线vscode显示github仓库代码
+- [jsonplaceholder](https://jsonplaceholder.typicode.com/) 在线api测试
 
 
 #### 在线编程学习
